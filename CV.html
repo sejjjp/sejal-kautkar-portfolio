@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sejal Kautkar - UX Designer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .resume-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, #0a192f, #112240);
+      z-index: -1;
+    }
+    
+    .accent-light {
+      position: absolute;
+      top: 10%;
+      right: 15%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(77, 91, 206, 0.3) 0%, rgba(77, 91, 206, 0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    
+    .accent-blue {
+      position: absolute;
+      top: 20%;
+      right: 25%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(254, 165, 95, 0.2) 0%, rgba(254, 165, 95, 0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    
+    .content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      background-color: rgba(17, 34, 64, 0.95);
+      color: white;
+      padding: 40px 30px;
+    }
+    
+    .main-content {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .photo-container {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #FEA55F;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 14px;
+    }
+    
+    .profile-name {
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    
+    .profile-title {
+      font-size: 18px;
+      color: #FEA55F;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      color: #FEA55F;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #FEA55F;
+    }
+    
+    .language-item, .expertise-item {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    
+    .education-item {
+      margin-bottom: 20px;
+    }
+    
+    .education-degree {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    
+    .education-school, .education-year {
+      font-size: 14px;
+      color: #ccd6f6;
+    }
+    
+    .main-section-title {
+      font-size: 24px;
+      color: #0a192f;
+      margin-bottom: 20px;
+      position: relative;
+      font-weight: 600;
+    }
+    
+    .main-section-title::before {
+      content: '>';
+      color: #4D5BCE;
+      margin-right: 8px;
+      font-family: monospace;
+    }
+    
+    .main-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #FEA55F;
+    }
+    
+    .about-text {
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    
+    .experience-container {
+      margin-bottom: 40px;
+    }
+    
+    .experience-description {
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 30px;
+    }
+    
+    .experience-description ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    
+    .experience-description li {
+      margin-bottom: 8px;
+    }
+    
+    .skills-container {
+      margin-bottom: 10px;
+    }
+    
+    .skills-text {
+      font-size: 15px;
+      color: #000;
+      line-height: 1.7;
+    }
+    
+    .code-style {
+      font-family: monospace;
+      color: #4D5BCE;
+    }
+    
+    .highlight {
+      color: #FEA55F;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <div class="background"></div>
+    <div class="accent-light"></div>
+    <div class="accent-blue"></div>
+    
+    <div class="content">
+      <div class="sidebar">
+        <div class="profile">
+          <div class="photo-container">
+            <div class="photo-placeholder">
+              <img src="https://media-hosting.imagekit.io//1b0b7db0a7754a40/Screenshot%202025-03-03%20at%2010.16.03%E2%80%AFPM.png?Expires=1835628367&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gx5s5JiKuhIMPaihSg2-OOj~MT4hWXp5JBXGiFbiNhEgznYz7fQzAo6H4-5Sz-HNssaXMdKENlTp~0jLx2~UHL3hi27Tg7MGc0f2OBR18RIEhlaLYJT-wouma-tTtfFjXG1Kbj7Fk5aDrQngNKqA2qA0BmDAzML5qLATbXJMtK3FmK-mCKrGMle~l8Y8DO8OHd09izcFTj-Rvn4zKzxS9Us0-OBwCEmpvpHi9FsLU7oBxIpfl~760ZEjKhDKNcqzaTtuAlER5SSHo-kNJJ-CZu~o~QISflxim3zfFCAYl9eDtt33ZYOdMMgVSCAWIVk~RlzERZfijK~Y~540zngfDQ__" alt="Place your photo here" />
+            </div>
+          </div>
+          <h1 class="profile-name">Sejal Kautkar</h1>
+          <h2 class="profile-title"><span class="code-style">&gt;</span> UX Designer</h2>
+        </div>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>Phone: 7219068265</span>
+          </div>
+          <div class="contact-item">
+            <span>Email: sejalkautkar@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span>LinkedIn: sejalkautkar.linkedin</span>
+          </div>
+          <div class="contact-item">
+            <span>Location: Pune</span>
+          </div>
+        </div>
+        
+        <div class="education">
+          <h3 class="section-title">Education</h3>
+          <div class="education-item">
+            <div class="education-degree">Bachelor of Design</div>
+            <div class="education-school">MIT ADT</div>
+            <div class="education-year">2023-2027</div>
+          </div>
+        </div>
+        
+        <div class="expertise">
+          <h3 class="section-title">Expertise</h3>
+          <div class="expertise-item">Research-driven</div>
+          <div class="expertise-item">Web Design</div>
+          <div class="expertise-item">User-centric</div>
+        </div>
+        
+        <div class="languages">
+          <h3 class="section-title">Languages</h3>
+          <div class="language-item">English</div>
+          <div class="language-item">Hindi</div>
+          <div class="language-item">Marathi</div>
+        </div>
+      </div>
+      
+      <div class="main-content">
+        <div class="about">
+          <h3 class="main-section-title">About Me</h3>
+          <p class="about-text">
+            A passionate designer dedicated to crafting seamless and engaging digital experiences that not only look stunning but also enhance usability. I am an enthusiastic second-year student with a strong desire to learn and grow in the UX design field. Detail-oriented, collaborative, and thriving in fast-paced environments, I leverage my creativity and problem-solving abilities to deliver innovative solutions.
+          </p>
+        </div>
+        
+        <div class="experience-container">
+          <h3 class="main-section-title">Experience</h3>
+          <div class="experience-description">
+            <ul>
+              <li>Assisted in the creation of marketing materials, including posters, flyers, and social media graphics</li>
+              <li>Collaborated with team members to develop design concepts and implement feedback from clients</li>
+              <li>Contributed to brainstorming sessions and provided creative input for various projects</li>
+              <li>Gained hands-on experience with design software and learned industry-standard practices</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="skills-container">
+          <h3 class="main-section-title">UX Design Skills</h3>
+          <p class="skills-text">
+            Proficient in design tools such as <span class="highlight">Photoshop</span>, <span class="highlight">Figma</span>, <span class="highlight">Procreate</span>, and <span class="highlight">InDesign</span>. Learned valuable skills through group projects. Basic understanding of Visual Studio and coding principles. Worked with <span class="highlight">Unity</span> and <span class="highlight">MIT App Inventor</span> for application development. Strong communication and collaboration skills. Detail-oriented with a passion for creating intuitive user experiences. Recently completed a project on augmented reality, developing an app for PMPML local buses.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
