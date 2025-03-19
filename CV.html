@@ -230,9 +230,9 @@
         }
 
         .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            border-radius: 10%;
             overflow: hidden;
             margin: 0 auto 20px;
             border: 3px solid #ff7a00;
@@ -254,7 +254,7 @@
         .profile-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit:fill
         }
 
         .section {
@@ -596,8 +596,8 @@
             }
             
             .profile-image {
-                width: 150px;
-                height: 150px;
+                width: 50px;
+                height: 350px;
             }
             
             .section {
@@ -625,7 +625,10 @@
     transform: scale(1.2);
     animation: socialPulse 1s infinite;
 }
-
+.profile-image {
+                width: 250px;
+                height: 350px;
+            }
 @keyframes socialPulse {
     0% {
         transform: scale(1);
