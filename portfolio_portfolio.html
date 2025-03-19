@@ -586,6 +586,18 @@
     }
 }
         }
+
+       .portfolio-grid a {
+    display: block;  /* Makes the <a> behave like a div */
+    text-decoration: none; /* Removes default underline */
+    color: inherit; /* Ensures text color remains consistent */
+}
+
+.portfolio-grid a {
+    width: 100%; /* Maintain layout width */
+    height: 100%; /* Maintain layout height */
+}
+
     </style>
 </head>
 <body>
@@ -608,33 +620,42 @@
             
             <div class="portfolio-grid">
                 <!-- Project 1 -->
-                <div class="portfolio-item">
-                    <div class="portfolio-img-container">
-                        <img src="https://media-hosting.imagekit.io//763a0db648c64530/Screenshot%202025-03-10%20at%201.50.31%E2%80%AFPM.png?Expires=1836202835&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DYPY5DYzTU0RlxX6rJDeFFtBEGOnhcQxKY9czGJHRGvZPknenlukLCGw6SD2oTXRpdRMmEGnWCVINYMZ6EYwGFGc~2woEI-x3RCYe6gr8dySEXAfaZTWEWwiVay-grbc~1vNczKuFRu1Nd1YLXwghY-IJ7eeAkOlz84jxPb88ovlqaYnKQ1gqzyjafdJu37GpeCvxPdbBL5nyq7he7wkB2Y982g0hp72buofMSFVoY4ex61kjp3MQCZ-F5gGbxGLD9x0F-rE9Nic4cE5tXuAiRKhDOE7FgJfLzgfhBOPrMOT21CuNIdZ95~wttdPt0F0UZGjuqXusHiueHZ-B~J54A__" class="portfolio-img">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-name">&lt;Understanding Design Methods <span>[Sweetmap]</span>&gt;</h3>
-                        <div class="project-arrow">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                <a href="https://drive.google.com/file/d/1UzXQcMvGMBKqjpygMGrw7lw9yeiNVde6/view?usp=share_link" target="_blank">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img-container">
+                            <img src="https://media-hosting.imagekit.io//763a0db648c64530/Screenshot%202025-03-10%20at%201.50.31%E2%80%AFPM.png?Expires=1836202835&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DYPY5DYzTU0RlxX6rJDeFFtBEGOnhcQxKY9czGJHRGvZPknenlukLCGw6SD2oTXRpdRMmEGnWCVINYMZ6EYwGFGc~2woEI-x3RCYe6gr8dySEXAfaZTWEWwiVay-grbc~1vNczKuFRu1Nd1YLXwghY-IJ7eeAkOlz84jxPb88ovlqaYnKQ1gqzyjafdJu37GpeCvxPdbBL5nyq7he7wkB2Y982g0hp72buofMSFVoY4ex61kjp3MQCZ-F5gGbxGLD9x0F-rE9Nic4cE5tXuAiRKhDOE7FgJfLzgfhBOPrMOT21CuNIdZ95~wttdPt0F0UZGjuqXusHiueHZ-B~J54A__" 
+                            class="portfolio-img">
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-name">&lt;Understanding Design Methods <span>[Sweetmap]</span>&gt;</h3>
+                            <div class="project-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12h14M12 5l7 7-7 7" 
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="portfolio-item">
-                    <div class="portfolio-img-container">
-                        <img src="https://media-hosting.imagekit.io//1578466eca004e1b/Screenshot%202025-03-19%20at%207.06.07%E2%80%AFPM.png?Expires=1836999372&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ts7WxByIYmwpjyMvrV6kRyHe2hG-iHs1bcgEGwSiUyQpFaHrssenD7M1IeEz8XbFMmBbxoqw-5pSV-bQWQhxoHFlwlP2NtHFPoYpr-LBOwGM3VXF9VfcTXNMgvF2IXvldMtL1FbFh9TMrxbpuk94s~MfnClxWfLu4gr2PLd3M9CU7UG4MJ3qMwUVPUZJdHWn4~svBOhFrUZ3~1yuWnf60p3WS66qG8gOqdYlLU4BrQE6Pa5f5XCHxjBLMP4np3uaHl60cwf2XfJkCauk-XHr4AWG~x8DiAASExMQexmLIjf~s5kX709UvBcDQSyRN85Ku2a4Hovpstkeh3o~~lTMVg__" class="portfolio-img">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-name">&lt;Cognitive Ergonomics <span>[Jio Mart]</span>&gt;</h3>
-                        <div class="project-arrow">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                <a href="https://drive.google.com/file/d/1UzXQcMvGMBKqjpygMGrw7lw9yeiNVde6/view?usp=share_link" target="_blank">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img-container">
+                            <img src="https://media-hosting.imagekit.io//763a0db648c64530/Screenshot%202025-03-10%20at%201.50.31%E2%80%AFPM.png?Expires=1836202835&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DYPY5DYzTU0RlxX6rJDeFFtBEGOnhcQxKY9czGJHRGvZPknenlukLCGw6SD2oTXRpdRMmEGnWCVINYMZ6EYwGFGc~2woEI-x3RCYe6gr8dySEXAfaZTWEWwiVay-grbc~1vNczKuFRu1Nd1YLXwghY-IJ7eeAkOlz84jxPb88ovlqaYnKQ1gqzyjafdJu37GpeCvxPdbBL5nyq7he7wkB2Y982g0hp72buofMSFVoY4ex61kjp3MQCZ-F5gGbxGLD9x0F-rE9Nic4cE5tXuAiRKhDOE7FgJfLzgfhBOPrMOT21CuNIdZ95~wttdPt0F0UZGjuqXusHiueHZ-B~J54A__" 
+                            class="portfolio-img">
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-name">&lt;Cognitive Ergonomics <span>[Jio Mart]</span>&gt;</h3>
+                            <div class="project-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12h14M12 5l7 7-7 7" 
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+
             
                 <!-- Project 2 -->
                 <div class="portfolio-item">
