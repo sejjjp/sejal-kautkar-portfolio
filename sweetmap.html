@@ -25,7 +25,6 @@
             position: relative;
         }
         
-        
         .container {
             max-width: 1782px;
             margin: 0 auto;
@@ -48,13 +47,14 @@
             flex-wrap: wrap;
             backdrop-filter: blur(10px);
             background-color: rgba(10, 22, 34, 0.5);
+            margin-bottom: 20px;
         }
 
         .nav {
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
-            gap: 0; /* Using gap instead of margins between items */
+            gap: 0;
         }
 
         .nav-item {
@@ -68,7 +68,7 @@
             white-space: nowrap;
             position: relative;
             overflow: hidden;
-            margin: 0; /* Ensure no margins are causing overlap */
+            margin: 0;
         }
 
         /* Nav item hover animation */
@@ -102,231 +102,10 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%; /* Make sure this isn't exceeding 100% */
-            height: 3px;
-            background-color: #ff7a00;
-            /* Ensure it's contained within its parent */
-            overflow: hidden;
-        }
-
-        /* Staggered nav items animation */
-        @keyframes navItemFade {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Setting delay for each nav item */
-        .nav-item:nth-child(1) { animation-delay: 0.2s; }
-        .nav-item:nth-child(2) { animation-delay: 0.4s; }
-        .nav-item:nth-child(3) { animation-delay: 0.6s; }
-        .nav-item:nth-child(4) { animation-delay: 0.8s; }
-        .nav-item:nth-child(5) { animation-delay: 1s; }
-
-        /* Footer Styles - FIXED */
-        .footer {
-            padding: 20px 0;
-            opacity: 1; /* Changed from 0 to 1 */
-            /* Removed animation that was causing issues */
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            background-color: rgba(10, 22, 34, 0.5);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            /* Made animation optional with a shorter delay */
-            animation: footerSlideUp 0.8s ease-out forwards;
-        }
-
-        @keyframes footerSlideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .social-links {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .social-text {
-            color: #8a9bae;
-            font-size: 14px;
-            padding: 10px 20px;
-            font-family: 'Fira Code', monospace;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 1; /* Changed from 0 to 1 */
-            /* Animation is now optional */
-        }
-
-        .social-item:nth-child(2) { animation-delay: 0.2s; }
-        .social-item:nth-child(3) { animation-delay: 0.4s; }
-        .social-item:nth-child(4) { animation-delay: 0.6s; }
-
-        @keyframes socialItemFade {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .social-item::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
             height: 3px;
             background-color: #ff7a00;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .social-item:hover::before {
-            transform: translateX(0);
-        }
-
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            color: #8a9bae;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-
-        .social-item:hover .social-icon {
-            color: white;
-            transform: scale(1.2);
-            animation: socialPulse 1s infinite;
-        }
-
-        @keyframes socialPulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        /* Main content to push footer down */
-        .main-content {
-            flex: 1;
-        }
-        
-        /* Rest of your styles */
-        /* ... */
-        
-        /* Responsive design */
-        @media screen and (max-width: 768px) {
-            .nav {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            
-            .nav-item {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-            
-            .footer-container {
-                border-radius: 20px;
-                padding: 10px;
-            }
-            
-            .social-text {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-            
-            .social-item {
-                padding: 8px 10px;
-            }
-            
-            .social-icon {
-                width: 20px;
-                height: 20px;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .nav {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .social-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .footer-container {
-                flex-direction: column;
-                padding: 15px;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .social-text {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                padding-bottom: 10px;
-                margin-bottom: 10px;
-                text-align: center;
-                width: 100%;
-            }
-            
-            .social-item {
-                padding: 8px;
-            }
+            overflow: hidden;
         }
 
         .logo {
@@ -337,121 +116,43 @@
             letter-spacing: 1px;
             font-size: 18px;
         }
-         /* Staggered nav items animation */
-         @keyframes navItemFade {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        /* Setting delay for each nav item */
-        .nav-item:nth-child(1) { animation-delay: 0.2s; }
-        .nav-item:nth-child(2) { animation-delay: 0.4s; }
-        .nav-item:nth-child(3) { animation-delay: 0.6s; }
-        .nav-item:nth-child(4) { animation-delay: 0.8s; }
-        .nav-item:nth-child(5) { animation-delay: 1s; }
-
-        /* Download CV button animation */
-        .download-btn {
+        /* Main content */
+        .main-content {
+            flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-right: 10px;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Fira Code', monospace;
         }
 
-        .download-btn.animated {
-            animation: btnPulse 2s infinite alternate;
-        }
-
-        @keyframes btnPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
-            }
-            100% {
-                box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
-            }
-        }
-
-        .download-btn:hover {
-            background-color: #ff7a00;
-            border-color: #ff7a00;
-            transform: scale(1.05);
-        }
-
-        .download-icon {
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .download-btn:hover .download-icon {
-            transform: translateY(5px);
-        }
-
-        /* Portfolio main content */
         .portfolio-title {
             text-align: center;
             font-size: 36px;
             margin: 30px 0;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards 0.5s;
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
         .portfolio-title span {
             color: #6c7ee1;
         }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 80px; /* Horizontal space between columns */
-            row-gap: 80px;    /* Vertical space between rows */
-            padding: 20px 0;
-        }
-        
-        /* Modified portfolio item to remove overlay and add bottom content */
-        .portfolio-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: imageFadeIn 0.8s ease-out forwards;
-            cursor: pointer;
-            transition: all 0.4s ease;
+        /* Updated portfolio presentation container */
+        .portfolio-presentation-container {
+            width: 100%;
+            max-width: 1800px;
+            margin: 0 auto 40px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            animation: imageFadeIn 0.8s ease-out forwards;
         }
 
-       
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        /* Updated portfolio image styling */
+        .portfolio-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
-
-        .portfolio-item:nth-child(1) { animation-delay: 0.6s; }
-        .portfolio-item:nth-child(2) { animation-delay: 0.8s; }
-        .portfolio-item:nth-child(3) { animation-delay: 1.0s; }
-        .portfolio-item:nth-child(4) { animation-delay: 1.2s; }
-        .portfolio-item:nth-child(5) { animation-delay: 1.4s; }
-        .portfolio-item:nth-child(6) { animation-delay: 1.6s; }
-        .portfolio-item:nth-child(7) { animation-delay: 1.8s; }
 
         @keyframes imageFadeIn {
             from {
@@ -464,58 +165,19 @@
             }
         }
 
-        .portfolio-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.05);
-        }
-
-        /* New style for portfolio content below the image */
-        .portfolio-content {
-            padding: 20px;
-            background-color: rgba(10, 22, 34, 0.9);
-            position: relative;
-        }
-
-        .portfolio-name {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .portfolio-name span {
-            color: #ff7a00;
-        }
-
-        .project-arrow {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 122, 0, 0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-item:hover .project-arrow {
-            transform: rotate(45deg);
-        }
-
-        /* Footer */
+        /* Footer Styles */
         .footer {
             padding: 20px 0;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards 1.4s;
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
         .footer-container {
@@ -529,8 +191,6 @@
             background-color: rgba(10, 22, 34, 0.5);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             animation: footerSlideUp 0.8s ease-out forwards;
-            transform: translateY(20px);
-            opacity: 0;
         }
 
         @keyframes footerSlideUp {
@@ -567,23 +227,6 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            animation: socialItemFade 0.5s ease forwards;
-        }
-
-        .social-item:nth-child(2) { animation-delay: 0.2s; }
-        .social-item:nth-child(3) { animation-delay: 0.4s; }
-        .social-item:nth-child(4) { animation-delay: 0.6s; }
-
-        @keyframes socialItemFade {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .social-item::before {
@@ -629,13 +272,7 @@
             }
         }
 
-        /* Media Queries for Responsive Design */
-        @media screen and (max-width: 992px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        /* Responsive design */
         @media screen and (max-width: 768px) {
             .header {
                 justify-content: center;
@@ -656,11 +293,6 @@
             .nav-item {
                 padding: 12px 15px;
                 font-size: 12px;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
             }
             
             .portfolio-title {
@@ -705,10 +337,6 @@
                 font-size: 24px;
             }
             
-            .portfolio-name {
-                font-size: 16px;
-            }
-            
             .footer-container {
                 flex-direction: column;
                 padding: 15px;
@@ -731,32 +359,6 @@
             .social-item {
                 padding: 8px;
             }
-            .social-icon {
-    width: 24px;
-    height: 24px;
-    color: #8a9bae;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    transform: scale(1);
-}
-
-.social-item:hover .social-icon {
-    color: white;
-    transform: scale(1.2);
-    animation: socialPulse 1s infinite;
-}
-
-@keyframes socialPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
         }
     </style>
 </head>
@@ -775,7 +377,13 @@
         </header>
         
         <main class="main-content">
-            <!-- Main content will go here -->
+            <div class="portfolio-title">[Sweetmap]<span></span></div>
+            
+            <!-- Updated portfolio presentation - directly using the image -->
+            <div class="portfolio-presentation-container">
+                <img src="https://media-hosting.imagekit.io//9a7ae2de7ab54a8a/sweetmap.png?Expires=1837179540&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=xAgqbVXkaP3Tg3JnwwUcRbK-vLFPxgjd9hfEgdPiNlhDrG3vJp~oXu~W5hj0lNp2uBOYYxzMm-p4W0wuVOO86SKjxriDsshAUHMnkGJXig1aGAs-2c0gGb57VVo5jIj~pm-mNy7a3nuGJAneSnZekPhuwe1quRFZfxtp8C8~UZakHw8AFPURYbbcLt4RPXSPK7fzm0vWPU1hf1jeKFEizEMJxdreO2a9iFuXWDI1WU0QNojLillLEE7d5kdOig5wpApTknlKhcqOVxLZB2LvDMpwRm3CtgKhRRkopnxebf2cPk9LtkthcCJYuwhFpbwSLCA4V3TnWYdJt-lbL0IHeQ__" alt="Portfolio Project Presentation" class="portfolio-image">
+            </div>
+            <!-- You can add additional project content here if needed -->
         </main>
         
         <footer class="footer">
@@ -820,18 +428,6 @@
                 } else {
                     link.classList.remove('active');
                 }
-            });
-        });
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle active navigation item
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                });
             });
         });
     </script>
