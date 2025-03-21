@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejal Kautkar - Portfolio</title>
+    <title>Sejal Kautkar - UX Designer</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
         /* Reset and base styles */
         * {
@@ -14,7 +13,7 @@
             box-sizing: border-box;
             font-family: 'Fira Code', monospace;
         }
-
+        
         body {
             background-color: #0a1622;
             color: white;
@@ -25,43 +24,18 @@
             background-repeat: no-repeat;
             position: relative;
         }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 22, 34, 0.85);
-            z-index: -1;
-        }
-
-        /* Main container with fade-in animation */
+        
+        
         .container {
-            max-width: 1200px;
+            max-width: 1782px;
             margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 0 20px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-out forwards;
+            min-height: 100vh;
         }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        
         /* Header and navigation */
         .header {
             display: flex;
@@ -76,42 +50,11 @@
             background-color: rgba(10, 22, 34, 0.5);
         }
 
-        .logo {
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            font-size: 18px;
-        }
- /* Download CV button animation */
- .download-btn {
-            display: flex;
-            align-items: center;
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-right: 10px;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: btnPulse 2s infinite alternate;
-            animation-delay: 0.2s;
-            opacity: 0;
-            animation: navItemFade 0.5s ease forwards 1.2s, btnPulse 2s infinite 2s;
-            font-family: 'Fira Code', monospace;
-        }
-
         .nav {
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
-            gap: 0;
+            gap: 0; /* Using gap instead of margins between items */
         }
 
         .nav-item {
@@ -125,7 +68,7 @@
             white-space: nowrap;
             position: relative;
             overflow: hidden;
-            margin: 0;
+            margin: 0; /* Ensure no margins are causing overlap */
         }
 
         /* Nav item hover animation */
@@ -159,14 +102,243 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            width: 100%; /* Make sure this isn't exceeding 100% */
             height: 3px;
             background-color: #ff7a00;
+            /* Ensure it's contained within its parent */
             overflow: hidden;
         }
 
         /* Staggered nav items animation */
         @keyframes navItemFade {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Setting delay for each nav item */
+        .nav-item:nth-child(1) { animation-delay: 0.2s; }
+        .nav-item:nth-child(2) { animation-delay: 0.4s; }
+        .nav-item:nth-child(3) { animation-delay: 0.6s; }
+        .nav-item:nth-child(4) { animation-delay: 0.8s; }
+        .nav-item:nth-child(5) { animation-delay: 1s; }
+
+        /* Footer Styles - FIXED */
+        .footer {
+            padding: 20px 0;
+            opacity: 1; /* Changed from 0 to 1 */
+            /* Removed animation that was causing issues */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 22, 34, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Made animation optional with a shorter delay */
+            animation: footerSlideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes footerSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .social-text {
+            color: #8a9bae;
+            font-size: 14px;
+            padding: 10px 20px;
+            font-family: 'Fira Code', monospace;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 1; /* Changed from 0 to 1 */
+            /* Animation is now optional */
+        }
+
+        .social-item:nth-child(2) { animation-delay: 0.2s; }
+        .social-item:nth-child(3) { animation-delay: 0.4s; }
+        .social-item:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes socialItemFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff7a00;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .social-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            color: #8a9bae;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+
+        .social-item:hover .social-icon {
+            color: white;
+            transform: scale(1.2);
+            animation: socialPulse 1s infinite;
+        }
+
+        @keyframes socialPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Main content to push footer down */
+        .main-content {
+            flex: 1;
+        }
+        
+        /* Rest of your styles */
+        /* ... */
+        
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .nav {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .nav-item {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .footer-container {
+                border-radius: 20px;
+                padding: 10px;
+            }
+            
+            .social-text {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .social-item {
+                padding: 8px 10px;
+            }
+            
+            .social-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .social-text {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .social-item {
+                padding: 8px;
+            }
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 18px;
+        }
+         /* Staggered nav items animation */
+         @keyframes navItemFade {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
@@ -586,18 +758,6 @@
     }
 }
         }
-
-       .portfolio-grid a {
-    display: block;  /* Makes the <a> behave like a div */
-    text-decoration: none; /* Removes default underline */
-    color: inherit; /* Ensures text color remains consistent */
-}
-
-.portfolio-grid a {
-    width: 100%; /* Maintain layout width */
-    height: 100%; /* Maintain layout height */
-}
-
     </style>
 </head>
 <body>
@@ -612,184 +772,17 @@
                 <a href="portfolio_contact_me.html" class="nav-item">CONTACT ME</a>
                 <a href="CV.html" class="nav-item">RESUME</a>
             </nav>
-           
         </header>
-
-        <main>
-            <h1 class="portfolio-title">&lt;Lets have a look at <span>my Projects</span>&gt;</h1>
-            
-            <div class="portfolio-grid">
-                <!-- Project 1 -->
-                <a href="https://drive.google.com/drive/folders/1bOlQF-k5L99XTQsBRqaP4sQVIibxkYPJ?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//763a0db648c64530/Screenshot%202025-03-10%20at%201.50.31%E2%80%AFPM.png?Expires=1836202835&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DYPY5DYzTU0RlxX6rJDeFFtBEGOnhcQxKY9czGJHRGvZPknenlukLCGw6SD2oTXRpdRMmEGnWCVINYMZ6EYwGFGc~2woEI-x3RCYe6gr8dySEXAfaZTWEWwiVay-grbc~1vNczKuFRu1Nd1YLXwghY-IJ7eeAkOlz84jxPb88ovlqaYnKQ1gqzyjafdJu37GpeCvxPdbBL5nyq7he7wkB2Y982g0hp72buofMSFVoY4ex61kjp3MQCZ-F5gGbxGLD9x0F-rE9Nic4cE5tXuAiRKhDOE7FgJfLzgfhBOPrMOT21CuNIdZ95~wttdPt0F0UZGjuqXusHiueHZ-B~J54A__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Understanding Design Methods <span>[Sweetmap]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1UzXQcMvGMBKqjpygMGrw7lw9yeiNVde6/view?usp=share_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//1578466eca004e1b/Screenshot%202025-03-19%20at%207.06.07%E2%80%AFPM.png?Expires=1836999372&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ts7WxByIYmwpjyMvrV6kRyHe2hG-iHs1bcgEGwSiUyQpFaHrssenD7M1IeEz8XbFMmBbxoqw-5pSV-bQWQhxoHFlwlP2NtHFPoYpr-LBOwGM3VXF9VfcTXNMgvF2IXvldMtL1FbFh9TMrxbpuk94s~MfnClxWfLu4gr2PLd3M9CU7UG4MJ3qMwUVPUZJdHWn4~svBOhFrUZ3~1yuWnf60p3WS66qG8gOqdYlLU4BrQE6Pa5f5XCHxjBLMP4np3uaHl60cwf2XfJkCauk-XHr4AWG~x8DiAASExMQexmLIjf~s5kX709UvBcDQSyRN85Ku2a4Hovpstkeh3o~~lTMVg__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Cognitive Ergonomics <span>[Jio Mart]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="cognitive-ergonomics.html">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//feedc7c81cac4cb1/Screenshot%202025-03-10%20at%201.48.35%E2%80%AFPM.png?Expires=1836202719&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=UPJ1J-olRRa9OrnwykZRKavtXBUekzd1U2lAxtDctdmlOj3L5hY45h3NCcH~-5oX8-WNulgBWeYzgt1jX-HGwWu8k3Mx-YaWU1VxSVI~VdoFtzXBBd9ytjnrWe1e6BabmmcQZdttK9kpMB5z875gtSqfZRI9PkbARzEm-wu3-VgwSods1OyIyEzQoC4WwoAM2X4h5KCRh-e33sz9--L1eDWp91K0~3WvHLLr6s3J7xAz~sVelOLgd9LbBGHdI4MNEGzTPfaQAEvaP81ZaooH3-hBLzB1Phjh-6ctN7PcvivT9KZmbNi7KxL~e~ZJJvUMRqJqp0UMk~AwvJrBP8f~lQ__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Cognitive Ergonomics <span>[Aqua trails]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-              
-                <a href="zenify.html">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//afb4de97048e4fde/Screenshot%202025-03-10%20at%201.36.01%E2%80%AFPM.png?Expires=1836201966&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=v3FxLXrdlOo9X-9S8jTKGknAu4T9TOMD9d2rNj8W7sUgklRAMzViu7mb33E2vp1JwlAIHzgnHPHxIdoTDf6fTRIu7EH5romoqsywaK1wxxq8o5C4QZAiY3vE5Fe5P~G2LzDuidpTctOCMat3Nt5rdY8bu1~-a806hKBC4M7jIoZ9nrjcbGFGJ3yTFDuNI77IibfucS0h-NopWy-1XSDIyPG8mY9R~vkGkbiMnoHkpfTzErtpu4-OAqNlk3x9VKVApNrYKtnRoZkPf-9yxuk5Zv29ZrZZvPxKCn7m4OlGfS-T6I2NXaLKQcsidmT7K6T9iy88WZC35TLV64a80b~gmg__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;ZENIFY APP&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                
-                <h1 class="portfolio-title">&lt;Lets have a look at my  <span> More Projects</span>&gt;</h1>
-
-                <a href="https://drive.google.com/drive/folders/1ommZwdK_j9e0Gla_TxSpvruqtUbNJSdq?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//e84f0266259c485f/Screenshot%202025-03-10%20at%201.36.54%E2%80%AFPM.png?Expires=1836202019&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=HIVja~zfJj4L8HzSQHNSSkukQL65nkpONcQTTwRSbFsbskFN6BG6Sh14BSV~nqcbXMFtkDd3WIHfMs2J1i9ZN3mEJ4hJwEmdX5D0mJudeyxRe0zUUc1mrpy3zp0j8bp6CtRw3VzolkkNEZgVIsmxS~6rVyt4By~yjL2G6NvN5sODaBnCkJYlJBhnpbMKEzC4LabhQC-A1iiP1xQ7igXQh-nrtBJOVa-VFRxHK2FWbHbkqzVxtnhmyRLfDXS11rT4QluKwypWpKBe~c4wut4WNNOzHqOaAbPqMiFzraez9eMxykQ0kTQpjpfrw5Gp6QShPE8chShYoTnjQRF0LADnEw__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Semantics & Semiotics <span>[MirrorMind]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="https://drive.google.com/file/d/1iU2AAUHQYKWNWVk5wzA48ZGp535b7LIf/view?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//1e3908aa445c4953/Screenshot%202025-03-10%20at%201.38.04%E2%80%AFPM.png?Expires=1836202088&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=YAxGNMAhBPdOVUNUOAoGpy19QD8Ixdpv~MFPPCmzp6MWpxwbcyhp783LfYv4gjvYnZzy8mVo5Rg2erUtqK8T10XasehXdQAgPcuU48Rc008Wm73uZsiZUteS6AN9Dl011yIU2ZbAlDPA5~0ouAkgnjpEnJDX7bPH0yN92eGPBIq77L9lf6nipp41MMC2JhfIo12SMgzASqqBJ9x6xzRI0l-UfBAbRw4cVe8BjVxNNiEzFT~hZ51yZAFHeY2t4KBFDc5rXJOZ92gAcCsAzzHWg8frESy2VRb~mI-CrjOFxDaK-4NYoTUaigXwIJNvuWhMwoCjIvtgAAPs-BYH4x5B4Q__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;System Analysis & Modelling <span>[BigBasket]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="https://drive.google.com/file/d/1ttxh-n5b8nY4cF8jV8wx1oOwsTxcw0wx/view?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//ab223b3d11de4202/Screenshot%202025-03-10%20at%201.36.17%E2%80%AFPM.png?Expires=1836201981&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=I~0Wpuhh-~6GffPU9iHEpuPJCrzMSOhhjYGAfxEyeKlY8I3Vb57gJQKPLnYjRDE2R3uJFKvl2Ix9lm7IB1Gj3DMB06x4LK~2B-TfS3Xcfjs8Vmm00CZqTqlAddVc~pYzaklIfbNlXUkILEsE16iWfAt~BLn-31tcYtJQ9sZpfbzcOmJQenB5VPR2ebvNMivy3LkVOTAMLNFjBjKze1jflkm7Gvd8L-Py5kFbd6IZ5QtvcDbrITQwpb6RyeAb9PIhAhF08QLxbkUd-er6T9jWQUhM0mfCI0PjLAW9UMZ0n8GNaBgRMGzKrplZFgBFMJofJfvExp6IVaPtry-2Xrohcg__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Creativity & Innovation <span>[Local bus stop]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1EN4dI92ULlGrsxeJoQVhIFWMsjMK4_gY/view?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//9d65047b0e5e48d0/Screenshot%202025-03-10%20at%202.21.48%E2%80%AFPM.png?Expires=1836204713&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=kRJrKKp9wNGlj0Cb5K4WNbQodRWm5aZjJulzTtwqn8hdduOvdiNPhBjzBEh0jorZVsQo6MQXVmori84jNkU0~AyovuYlsbNnKEcSUxZ0oQdn5-XyxSpjmllDFr0pCWtWbiTlxYlkNb-~gwg6mpZ5JIkinftnqAZWMQcm8UTujwjoCinIUSslXAIP7VzaT8Nm6OEAdygV7~wwmUgFpwwFUos4BdC2kZ2~dZVVvvBXAvBmCWzDI8ocEzgLakmBjyDK0yG0ElWE84oJKL6qyVU35KGQLj-5HwOeDXcVF3sILhFcGhyB2rPsEsokcKh7aK7pz9bHjwMDs9oJAzAj6vGrjA__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Ergonomics  <span>[Tailoring Tool]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1uCx17SzuQXe6NJCo0oNOCaVQdrrMCpk1/view?usp=drive_link" target="_blank">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img-container">
-                            <img src="https://media-hosting.imagekit.io//17aa5047e5b04db7/Screenshot%202025-03-10%20at%202.21.26%E2%80%AFPM.png?Expires=1836204693&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=yWRVajkRWg6I-bG5bHoShGqqe7GLvJPvME~P3Ccm--s7qoLi0RMHOTAuLqFI8MXbi1uQB358S-ntXb7mUrqHifXWgQoyf10PgTaUMhBhiaGufEO~Bp0r6Qm0~UlqVEGjoZeZkYM1c5xc35aMdsIVvAWz4BPbQepcHTAKAoJU2U-a-4eAS8x7oR-3JbmdzY4GBcIfOsh5k~V6LAFHSgq15XUa5ZcfyhsmjWh1HUEf4Gimq4K-kIhxiFGQcFx5KcZ53QAdHHxQ2PMeCe54O7MDmDcQL2rTWk4FV7M~r1ensnvNKABRwgLSCrJUX7yOH13U4mWQ5bzTcsEszStw6MaFlA__" 
-                            class="portfolio-img">
-                        </div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-name">&lt;Visual Thinking <span>[PMPML]</span>&gt;</h3>
-                            <div class="project-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12h14M12 5l7 7-7 7" 
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-              
+        
+        <main class="main-content">
+            <!-- Main content will go here -->
         </main>
-
+        
         <footer class="footer">
             <div class="footer-container">
                 <div class="social-links">
                     <span class="social-text">find me in:</span>
-                    <a href="#" target="_blank" title="LinkedIn" class="social-item">
+                    <a href="https://www.linkedin.com/feed/" target="_blank" title="LinkedIn" class="social-item">
                         <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
                         </svg>
@@ -799,7 +792,7 @@
                             <path d="M16.969 16.927a2.561 2.561 0 0 0 1.901 0.677 2.501 2.501 0 0 0 1.531 -0.475c0.362 -0.235 0.636 -0.584 0.779 -0.99h2.585a5.091 5.091 0 0 1 -1.9 2.896 5.292 5.292 0 0 1 -3.091 0.88 5.839 5.839 0 0 1 -2.284 -0.433 4.871 4.871 0 0 1 -1.723 -1.211 5.657 5.657 0 0 1 -1.08 -1.874 7.057 7.057 0 0 1 -0.383 -2.393c-0.005 -0.8 0.129 -1.595 0.396 -2.349a5.313 5.313 0 0 1 5.088 -3.604 4.87 4.87 0 0 1 2.376 0.563c0.661 0.362 1.231 0.87 1.668 1.485a6.2 6.2 0 0 1 0.943 2.133c0.194 0.821 0.263 1.666 0.205 2.508h-7.699c-0.063 0.79 0.184 1.574 0.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928 0.198 4.29 4.29 0 0 1 1.49 0.638c0.418 0.303 0.748 0.711 0.958 1.182 0.241 0.579 0.357 1.203 0.341 1.83a3.506 3.506 0 0 1 -0.506 1.961 3.726 3.726 0 0 1 -1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c0.464 0.747 0.697 1.615 0.67 2.494a4.593 4.593 0 0 1 -0.423 2.032 3.945 3.945 0 0 1 -1.163 1.413 5.114 5.114 0 0 1 -1.683 0.807 7.135 7.135 0 0 1 -1.928 0.259H0V4.084h6.947Zm-0.235 12.9c0.308 0.004 0.616 -0.029 0.916 -0.099a2.18 2.18 0 0 0 0.766 -0.332c0.228 -0.158 0.411 -0.371 0.534 -0.619 0.142 -0.317 0.208 -0.663 0.191 -1.009a2.08 2.08 0 0 0 -0.642 -1.715 2.618 2.618 0 0 0 -1.696 -0.505h-3.54v4.279h3.471Zm13.635 -5.967a2.13 2.13 0 0 0 -1.654 -0.619 2.336 2.336 0 0 0 -1.163 0.259 2.474 2.474 0 0 0 -0.738 0.62 2.359 2.359 0 0 0 -0.396 0.792c-0.074 0.239 -0.12 0.485 -0.137 0.734h4.769a3.239 3.239 0 0 0 -0.679 -1.785l-0.002 -0.001Zm-13.813 -0.648a2.254 2.254 0 0 0 1.423 -0.433c0.399 -0.355 0.607 -0.88 0.56 -1.413a1.916 1.916 0 0 0 -0.178 -0.891 1.298 1.298 0 0 0 -0.495 -0.533 1.851 1.851 0 0 0 -0.711 -0.274 3.966 3.966 0 0 0 -0.835 -0.073H3.241v3.631h3.293v-0.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/>
                         </svg>
                     </a>
-                    <a href="#" title="Email Me" class="social-item">
+                    <a href="mailto:sejalkautkar@gmail.com" title="Email Me" class="social-item">
                         <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
@@ -810,6 +803,26 @@
     </div>
 
     <script>
+        // JavaScript for active navigation link
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get current page URL
+            const currentPage = window.location.pathname.split('/').pop();
+            
+            // Select all navigation links
+            const navLinks = document.querySelectorAll('.nav-item');
+            
+            // Set active class based on current page
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || 
+                    (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Handle active navigation item
             const navItems = document.querySelectorAll('.nav-item');
@@ -820,24 +833,6 @@
                     this.classList.add('active');
                 });
             });
-            
-            // Animate elements as they come into view
-            function animateOnScroll() {
-                const animElements = document.querySelectorAll('.portfolio-item');
-                
-                animElements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = "1";
-                        element.style.transform = "translateY(0)";
-                    }
-                });
-            }
-            
-            // Add scroll event for animation
-            window.addEventListener('scroll', animateOnScroll);
         });
     </script>
 </body>
