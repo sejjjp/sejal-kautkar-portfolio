@@ -1,0 +1,598 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85);
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    margin-bottom: 30px; /* Added margin for spacing */
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 18px;
+    opacity: 0; /* For animation */
+    animation: navItemFade 0.5s ease forwards 0.1s;
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end; /* Align nav items to the right */
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    opacity: 0; /* Start transparent for animation */
+    animation: navItemFade 0.5s ease forwards;
+}
+
+/* Nav item hover animation */
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    overflow: hidden;
+}
+
+/* Staggered nav items animation */
+@keyframes navItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Setting delay for each nav item */
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.3s; }
+.nav-item:nth-child(3) { animation-delay: 0.4s; }
+.nav-item:nth-child(4) { animation-delay: 0.5s; }
+.nav-item:nth-child(5) { animation-delay: 0.6s; }
+.nav-item:nth-child(6) { animation-delay: 0.7s; } /* For Resume */
+
+/* Download CV button animation - Note: No download button in this HTML's header */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px; /* If added after nav */
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+    opacity: 0; /* For animation if added */
+    animation: navItemFade 0.5s ease forwards 0.8s, btnPulse 2s infinite 1.8s alternate;
+}
+
+/* .download-btn.animated class was defined but not used on an element */
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
+    }
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+/* Portfolio main content */
+main {
+    width: 100%;
+    flex-grow: 1; /* Allow main to take available space */
+}
+.portfolio-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 40px 0; /* Increased margin */
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.5s; /* Renamed animation for clarity */
+    color: white; /* Ensure text color */
+}
+
+.portfolio-title.secondary-title { /* For the "More Projects" title */
+    margin-top: 60px; /* More space before this title */
+    animation-delay: 1.0s; /* Delay its appearance if primary grid is long */
+}
+
+
+@keyframes contentFadeIn { /* General content fade in */
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-title span {
+    color: #6c7ee1;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 40px; /* Unified gap property */
+    padding: 20px 0;
+}
+
+.portfolio-grid a { /* Styling for the <a> tag wrapping portfolio items */
+    display: block; 
+    text-decoration: none; 
+    color: inherit; 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 20px; /* Apply border-radius to the link for consistent hover */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* For hover effect */
+}
+
+.portfolio-grid a:hover { /* Hover effect on the link itself */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+        
+.portfolio-item {
+    position: relative;
+    border-radius: 20px; /* Kept for inner structure */
+    overflow: hidden;
+    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); Moved to <a> tag */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: portfolioItemEntry 0.8s ease-out forwards;
+    /* cursor: pointer; Handled by <a> tag */
+    /* transition: all 0.4s ease; Moved to <a> tag */
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(10, 22, 34, 0.7); /* Base background for items */
+    height: 100%; /* Make item fill the link tag */
+}
+      
+/* Staggered animation for portfolio items */
+.portfolio-item:nth-child(1) { animation-delay: 0.6s; }
+.portfolio-item:nth-child(2) { animation-delay: 0.7s; } /* Adjusted delays for smoother entry */
+.portfolio-item:nth-child(3) { animation-delay: 0.8s; }
+.portfolio-item:nth-child(4) { animation-delay: 0.9s; }
+/* Delays for the second grid's items (assuming they might load after the first title) */
+.portfolio-title.secondary-title + .portfolio-grid .portfolio-item:nth-child(1) { animation-delay: 1.2s; }
+.portfolio-title.secondary-title + .portfolio-grid .portfolio-item:nth-child(2) { animation-delay: 1.3s; }
+.portfolio-title.secondary-title + .portfolio-grid .portfolio-item:nth-child(3) { animation-delay: 1.4s; }
+.portfolio-title.secondary-title + .portfolio-grid .portfolio-item:nth-child(4) { animation-delay: 1.5s; }
+.portfolio-title.secondary-title + .portfolio-grid .portfolio-item:nth-child(5) { animation-delay: 1.6s; }
+
+
+@keyframes portfolioItemEntry { /* Renamed from imageFadeIn for clarity */
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.portfolio-img-container { /* Added a container for the image */
+    width: 100%;
+    height: 250px; /* Fixed height for image consistency */
+    overflow: hidden; /* Ensures image scaling doesn't break layout */
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 100%; /* Make image fill its container */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-grid a:hover .portfolio-img { /* Hover effect on image via parent <a> hover */
+    transform: scale(1.05);
+}
+
+.portfolio-content {
+    padding: 20px;
+    background-color: rgba(10, 22, 34, 0.9); /* Consistent with item background */
+    position: relative; /* For arrow positioning */
+    flex-grow: 1; /* Allow content to fill space if item height is variable */
+    display: flex; /* For better control of inner elements */
+    flex-direction: column;
+    justify-content: space-between; /* Push arrow to bottom */
+}
+
+.portfolio-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px; /* Space below title */
+    color: white; /* Ensure text is white */
+}
+
+.portfolio-name span {
+    color: #ff7a00;
+}
+
+.project-arrow {
+    align-self: flex-end; /* Align arrow to the right */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 122, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-top: auto; /* Push to bottom if text is short */
+}
+
+.portfolio-grid a:hover .project-arrow { /* Arrow animation on parent <a> hover */
+    transform: rotate(45deg) scale(1.1);
+    background-color: #ff7a00;
+}
+
+/* Footer */
+.footer {
+    padding: 40px 0 20px; /* Adjusted padding */
+    margin-top: auto; /* Ensure footer is at the bottom */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1.8s; /* Delayed fade in */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 15px;
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 5px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Padding managed by width/height */
+    width: 44px;
+    height: 44px;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 50%;
+    /* opacity: 0; Should not be needed if footer has fadeIn */
+    /* animation: socialItemFade 0.5s ease forwards; Should not be needed if footer has fadeIn */
+}
+
+/* Staggered animation for social items if footer animation is removed/changed */
+/* .social-item:nth-child(2) { animation-delay: 0.2s; }
+.social-item:nth-child(3) { animation-delay: 0.4s; }
+.social-item:nth-child(4) { animation-delay: 0.6s; } */
+
+/* @keyframes socialItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+.social-item::before { /* Underline effect from other pages */
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #ff7a00;
+    transition: width 0.3s ease-out;
+}
+
+.social-item:hover::before {
+    width: 60%;
+}
+
+.social-icon {
+    width: 22px;
+    height: 22px;
+    color: #8a9bae;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: translateY(-2px) scale(1.1); /* Pop effect from other pages */
+}
+
+/* @keyframes socialPulse was defined but this pop effect seems more consistent
+@keyframes socialPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.social-item:hover .social-icon {
+    animation: socialPulse 1s infinite;
+} */
+
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 992px) {
+    .portfolio-grid {
+        /* grid-template-columns: repeat(2, 1fr); Already handled by auto-fit */
+        gap: 30px;
+    }
+    .portfolio-img-container {
+        height: 220px; /* Adjust image height */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+    .logo { font-size: 16px; padding: 10px 20px;}
+    
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 30px; /* Adjusted gap */
+    }
+    
+    .portfolio-title {
+        font-size: 28px;
+        margin: 30px 0;
+    }
+    .portfolio-img-container {
+        height: 200px; /* Further adjust image height */
+    }
+    
+    .footer-container {
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .social-text {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .social-item {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 8px;
+    }
+    .logo { display: none; } /* Hide logo for space */
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .portfolio-title {
+        font-size: 24px;
+        margin: 20px 0;
+    }
+    .portfolio-grid {
+        gap: 20px;
+    }
+    
+    .portfolio-name {
+        font-size: 16px;
+    }
+    .portfolio-img-container {
+        height: 180px; /* Smallest image height */
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-text {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .social-item {
+        margin-bottom: 5px;
+    }
+    /* Redundant social-icon and socialPulse for 480px removed, covered by general rules */
+}

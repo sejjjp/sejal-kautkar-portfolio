@@ -1,0 +1,632 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85);
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    margin-bottom: 50px;
+}
+
+.logo {
+    padding: 15px 30px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    opacity: 0; /* For animation */
+    animation: navItemFade 0.5s ease forwards 0.1s; /* Slight delay after container fade */
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end; /* Align nav items to the right */
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    opacity: 0; /* Start transparent for animation */
+    animation: navItemFade 0.5s ease forwards;
+}
+
+/* Staggered animation for nav items (Applied via JS or directly if preferred) */
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.3s; }
+.nav-item:nth-child(3) { animation-delay: 0.4s; }
+.nav-item:nth-child(4) { animation-delay: 0.5s; }
+.nav-item:nth-child(5) { animation-delay: 0.6s; }
+.nav-item:nth-child(6) { animation-delay: 0.7s; } /* For Resume */
+
+
+@keyframes navItemFade { /* General fade for nav items, logo, download button */
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+}
+
+/* Download CV button animation - Note: No download button in this HTML's header, but keeping styles if used elsewhere */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px; /* If it's after nav items */
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; /* Start transparent for animation */
+    animation: navItemFade 0.5s ease forwards 0.8s, btnPulse 2s infinite 1.8s alternate; /* Staggered and pulsing */
+    font-family: 'Fira Code', monospace;
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+
+/* Contact Page Specific Styles */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px; /* Increased gap for better separation */
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 30px 40px; /* Increased padding */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.6); /* Slightly more opaque background */
+    opacity: 0;
+    animation: contentEntry 0.8s ease-out forwards 0.5s; /* Animation for the whole container */
+}
+
+@keyframes contentEntry {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.contact-form {
+    flex: 1.2; /* Give slightly more space to form */
+    padding: 0; /* Padding is on parent now */
+}
+
+.contact-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: white; /* Explicitly set color */
+}
+
+.form-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #6c7ee1;
+    font-size: 18px;
+}
+
+.form-label::before {
+    content: '> ';
+    color: #ff7a00; /* Changed to accent color */
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px; /* Slightly more rounded */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
+    background-color: rgba(255, 255, 255, 0.03); /* More subtle background */
+    color: white;
+    font-family: 'Fira Code', monospace;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+    color: rgba(255,255,255,0.4);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ff7a00; /* Focus with accent color */
+    box-shadow: 0 0 10px rgba(255, 122, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.form-textarea {
+    height: 150px;
+    resize: vertical; /* Allow vertical resize */
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #ff7a00; /* Accent color border */
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Fira Code', monospace;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2s infinite alternate 1s; /* Delay pulse */
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 10px 5px rgba(255, 122, 0, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+        transform: scale(1.03);
+    }
+}
+
+.submit-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    color: #0a1622; /* Dark text on hover for contrast */
+    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+    animation-play-state: paused; /* Pause pulse on hover */
+}
+.submit-btn:hover .btn-icon path {
+    stroke: #0a1622; /* Change icon color on hover */
+}
+
+.btn-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+.btn-icon path {
+    transition: stroke 0.3s ease;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+.contact-image {
+    flex: 0.8; /* Adjust flex for image */
+    border-radius: 15px; /* Matched image's border-radius */
+    overflow: hidden;
+    opacity: 0;
+    animation: imageFadeIn 0.8s ease-out forwards 0.7s; /* Stagger animation */
+    border: 3px solid rgba(255,255,255,0.2); /* More subtle border */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    align-self: center; /* Center image vertically if container is taller */
+    max-height: 500px; /* Limit image height */
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.contact-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px; /* Inner radius slightly less than parent */
+}
+
+/* Footer Styles */
+.footer {
+    padding: 40px 0 20px; /* Added more top padding */
+    margin-top: auto; /* Ensure footer is at the bottom */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1.2s; /* Delayed fade in for footer */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* animation: footerSlideUp 0.8s ease-out forwards; No need for slide up if parent fades in */
+    /* transform: translateY(20px); */
+    /* opacity: 0; */
+}
+
+/* @keyframes footerSlideUp { No longer needed due to parent .footer animation
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+.social-links {
+    display: flex;
+    gap: 5px; /* Reduced gap for tighter links */
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 15px; /* Adjusted padding */
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 5px; /* Space after text */
+}
+
+.social-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Slightly larger for better click target */
+    height: 44px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border-radius: 50%; /* Make it circular */
+}
+
+.social-item::after { /* Underline effect */
+    content: '';
+    position: absolute;
+    bottom: 5px; /* Position underline slightly lower */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px; /* Thinner underline */
+    background-color: #FF7900;
+    transition: width 0.3s ease-out;
+}
+
+.social-item:hover::after {
+    width: 60%; /* Underline width on hover */
+}
+
+.social-icon {
+    width: 22px; /* Adjusted icon size */
+    height: 22px;
+    color: #8a9bae;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: translateY(-2px) scale(1.1); /* Pop and scale effect */
+}
+
+/* The last social-icon and socialPulse definitions were slightly different.
+   The one above with pop and scale seems more refined for this context.
+   If the pulse is desired, uncomment the @keyframes socialPulse and adjust .social-item:hover .social-icon
+*/
+/*
+@keyframes socialPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+.social-item:hover .social-icon {
+    color: white;
+    animation: socialPulse 1s infinite;
+}
+*/
+
+
+/* Media Queries */
+@media screen and (max-width: 992px) {
+    .contact-container {
+        flex-direction: column-reverse;
+        gap: 30px; /* Adjust gap for column layout */
+        padding: 20px;
+    }
+
+    .contact-image {
+        max-height: 350px; /* Adjust height */
+        width: 100%;
+        flex: auto; /* Reset flex basis */
+    }
+    .contact-form {
+        flex: auto; /* Reset flex basis */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: 30px; /* Reduced margin */
+    }
+    .logo{
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+    .download-btn { /* If present */
+        font-size: 12px;
+        padding: 10px 15px;
+        margin-left: 5px;
+    }
+    .contact-title {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .contact-form {
+        padding: 0; /* Padding is on parent */
+    }
+    .contact-container{
+        padding: 20px 15px;
+    }
+
+    .footer-container {
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .social-text {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .social-item {
+        padding: 0; /* Padding is handled by width/height */
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 8px;
+        margin-bottom: 20px; /* Reduced margin */
+    }
+    .logo {
+        display: none; /* Hide logo on very small screens for space */
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    .download-btn { /* If present */
+       display: none; /* Hide download button on very small screens */
+    }
+
+    .contact-title {
+        font-size: 28px;
+    }
+
+    .form-label {
+        font-size: 16px;
+    }
+
+    .form-input {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .contact-container{
+        padding: 15px 10px;
+        gap: 20px;
+    }
+    .contact-image {
+        max-height: 250px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 15px; /* Slightly smaller radius */
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 10px; /* Increased gap for column layout */
+    }
+    
+    .social-text {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0; /* Adjusted padding */
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .social-item {
+        /* padding: 8px; Already handled by width/height */
+        margin-bottom: 5px; /* Add some space between stacked icons */
+    }
+}

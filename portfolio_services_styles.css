@@ -1,0 +1,614 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85);
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    margin-bottom: 30px; /* Spacing after header */
+}
+
+/* Logo styles */
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 25px;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards; /* Applied navItemFade for consistency */
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    animation-delay: 0.1s; /* Original delay for logo */
+}
+       
+.nav {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: flex-end; /* Align nav items to the right */
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    opacity: 0; /* Start transparent for animation */
+    animation: navItemFade 0.5s ease forwards;
+}
+
+/* Nav item hover animation */
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    overflow: hidden;
+}
+
+/* Staggered nav items animation */
+@keyframes navItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Setting delay for each nav item (Logo already has its delay) */
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.3s; } /* Adjusted delays for smoother sequence */
+.nav-item:nth-child(3) { animation-delay: 0.4s; }
+.nav-item:nth-child(4) { animation-delay: 0.5s; }
+.nav-item:nth-child(5) { animation-delay: 0.6s; }
+.nav-item:nth-child(6) { animation-delay: 0.7s; } /* For Resume link */
+
+
+/* Download CV button animation - Not present in this HTML, but styles kept */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px; /* Changed from margin-right if it's after nav */
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+    /* Original animation had multiple parts, simplified if not used, or can be restored */
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards 0.8s, btnPulse 2s infinite 1.8s alternate;
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
+    }
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+/* Services Section Styles */
+.services-content {
+    padding: 50px 0;
+    flex-grow: 1; /* Ensure main content takes available space */
+}
+
+.services-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: titleFadeIn 0.8s ease forwards 0.5s;
+    color: white; /* Ensure text color */
+}
+
+.services-subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: titleFadeIn 0.8s ease forwards 0.8s;
+}
+
+.subtitle-text {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #c3cce3; /* Softer color for subtitle text */
+}
+
+.highlight {
+    color: #6c7ee1;
+    font-size: 24px;
+}
+
+@keyframes titleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.services-grid {
+    display: grid; /* Using grid for better alignment and responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    /* flex: 1 1 300px; No longer needed with grid */
+    background: rgba(10, 22, 34, 0.7);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    display: flex; /* Use flex to structure card content */
+    flex-direction: column;
+}
+
+/* Staggered animation for service cards */
+.service-card:nth-child(1) { animation: cardFadeIn 0.8s ease forwards 1s; }
+.service-card:nth-child(2) { animation: cardFadeIn 0.8s ease forwards 1.2s; }
+.service-card:nth-child(3) { animation: cardFadeIn 0.8s ease forwards 1.4s; }
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95); /* Added scale */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Added scale on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(108, 126, 225, 0.5);
+}
+
+.service-header {
+    padding: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(10, 22, 34, 0.8), rgba(30, 60, 90, 0.5)); /* Adjusted gradient */
+}
+
+.service-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: white; /* Ensure title is white */
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(108, 126, 225, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Added cubic-bezier */
+}
+.service-icon svg path {
+    transition: fill 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background-color: #6c7ee1;
+    transform: rotate(15deg) scale(1.1); /* More subtle rotation and scale */
+}
+.service-card:hover .service-icon svg path {
+    fill: white; /* Change icon color on hover */
+}
+
+
+.service-body {
+    padding: 25px;
+    color: #abb2bf; /* Lighter gray for body text */
+    line-height: 1.7; /* Increased line height */
+    font-size: 15px; /* Slightly smaller body font */
+    flex-grow: 1; /* Allow body to take available space */
+}
+
+.service-footer { /* Removed, not used in provided HTML */
+    /* padding: 0 25px 25px 25px; */
+}
+
+.view-btn { /* Removed, not used in provided HTML */
+    /* display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: #8a9bae;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease; */
+}
+
+/* .view-btn:hover {
+    background-color: #ff7a00;
+    color: white;
+    border-color: #ff7a00;
+} */
+
+/* Footer Styles */
+.footer {
+    padding: 40px 0 20px; /* Adjusted padding */
+    margin-top: auto; /* Ensure footer is at the bottom */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1.6s; /* Delayed animation for footer */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* No separate animation needed if .footer handles fade-in */
+}
+
+.social-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 15px;
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 5px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 50%;
+}
+
+/* .social-item:nth-child(2) to :nth-child(4) animation delays removed as footer fades in as a whole */
+
+.social-item::before { /* Underline effect consistent with other pages */
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #ff7a00;
+    transition: width 0.3s ease-out;
+}
+
+.social-item:hover::before {
+    width: 60%;
+}
+
+.social-icon {
+    width: 22px;
+    height: 22px;
+    color: #8a9bae;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: translateY(-2px) scale(1.1); /* Consistent pop effect */
+}
+
+/* @keyframes socialPulse definition and its application removed for consistency with other pages' pop effect */
+
+
+/* Media Queries */
+@media screen and (max-width: 992px) {
+    .services-title {
+        font-size: 40px;
+    }
+    .services-grid {
+        /* justify-content: center; Already handled by grid auto-fit */
+        gap: 25px; /* Adjust gap */
+    }
+    .service-card {
+        flex-basis: calc(50% - 15px); /* For two columns on tablet */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        /* justify-content: space-between; Default is fine, or center */
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+    
+    .logo {
+        padding: 12px 15px;
+        font-size: 16px;
+        flex-shrink: 0; /* Prevent logo from shrinking too much */
+    }
+    
+    .nav {
+        justify-content: flex-start; /* Allow nav to scroll if it overflows */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px; /* For scrollbar visibility if needed */
+        flex-wrap: nowrap;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+        flex-shrink: 0; /* Prevent nav items from shrinking */
+    }
+    
+    .download-btn { /* If present */
+        font-size: 12px;
+        padding: 10px 15px;
+        flex-shrink: 0;
+    }
+    
+    .services-title {
+        font-size: 32px;
+    }
+    
+    .subtitle-text, .highlight {
+        font-size: 20px;
+    }
+    .services-grid {
+        grid-template-columns: 1fr; /* Single column for cards */
+        gap: 20px;
+    }
+    .service-card {
+        flex-basis: 100%; /* Full width for single column */
+    }
+    
+    .footer-container { /* Styles from other pages' media queries */
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .social-text { /* Styles from other pages' media queries */
+        padding: 8px 12px;
+        font-size: 12px;
+        /* Other conflicting rules from original removed for consistency */
+    }
+    
+    .social-item { /* Styles from other pages' media queries */
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-icon { /* Styles from other pages' media queries */
+        width: 20px;
+        height: 20px;
+    }
+    /* Specific .social-links and .social-text for 768px in original were for column layout, which is now for 480px */
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 8px;
+    }
+    
+    .logo {
+        /* padding: 8px 12px; */
+        /* font-size: 14px; */
+        display: none; /* Hide logo for more space */
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .download-btn { /* If present */
+        /* padding: 8px 12px; */
+        /* font-size: 11px; */
+        display: none; /* Hide for more space */
+    }
+    
+    .services-title {
+        font-size: 28px;
+    }
+    
+    .subtitle-text, .highlight {
+        font-size: 18px;
+    }
+    .services-subtitle {
+        margin-bottom: 40px; /* Adjust spacing */
+    }
+    .service-header {
+        padding: 20px; /* Adjust padding */
+    }
+    .service-title {
+        font-size: 20px;
+    }
+    .service-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .service-body {
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    .footer-container { /* Styles from other pages' media queries */
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .social-links { /* Styles from other pages' media queries */
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-text { /* Styles from other pages' media queries */
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .social-item { /* Styles from other pages' media queries */
+        margin-bottom: 5px;
+    }
+    /* Redundant .social-icon rules for 480px removed */
+}

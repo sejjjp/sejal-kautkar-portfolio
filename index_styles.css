@@ -1,0 +1,646 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace; /* Changed to Fira Code */
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__'); /* Updated Background image URL */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85); /* Overlay to make text more readable */
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 0; /* Using gap instead of margins between items */
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0; /* Ensure no margins are causing overlap */
+}
+
+/* Nav item hover animation */
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Make sure this isn't exceeding 100% */
+    height: 3px;
+    background-color: #ff7a00;
+    /* Ensure it's contained within its parent */
+    overflow: hidden;
+}
+
+/* Staggered nav items animation */
+@keyframes navItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Setting delay for each nav item */
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.4s; }
+.nav-item:nth-child(3) { animation-delay: 0.6s; }
+.nav-item:nth-child(4) { animation-delay: 0.8s; }
+.nav-item:nth-child(5) { animation-delay: 1s; }
+
+/* Download CV button animation */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2s infinite alternate;
+    animation-delay: 1.2s;
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards 1.2s, btnPulse 2s infinite 2s;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
+    }
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+/* Main content */
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 50px 0;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.intro {
+    max-width: 50%;
+    flex: 1 1 400px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.8s;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.greeting {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+.role {
+    color: #6c7ee1;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+.role::before {
+    content: '>';
+    margin-right: 15px;
+    animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.description {
+    color: #8a9bae;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+/* Profile image animation */
+.profile-image {
+    max-width: 40%;
+    flex: 1 1 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    opacity: 0;
+    animation: imageFadeIn 0.8s ease-out forwards 1.2s;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.03) translateY(0);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.profile-image:hover img {
+    transform: scale(1.05);
+}
+
+/* URL Section */
+.url-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(108, 126, 225, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(108, 126, 225, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.url-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #6c7ee1;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+.url-list {
+    list-style: none;
+}
+
+.url-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.url-icon {
+    margin-right: 10px;
+    color: #ff7a00;
+    width: 20px;
+    height: 20px;
+}
+
+.url-link {
+    color: #8a9bae;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-all;
+    font-family: 'Fira Code', monospace; /* Added to ensure consistent font */
+}
+
+.url-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Updated Footer Styles */
+.footer {
+    padding: 20px 0;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1.4s;
+    margin-top: auto; /* Ensures footer is at the bottom if content is short */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: footerSlideUp 0.8s ease-out forwards;
+    transform: translateY(20px);
+    opacity: 0; /* Initial state for animation */
+}
+
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; /* Initial state for animation */
+    animation: socialItemFade 0.5s ease forwards;
+}
+
+/* Staggered animation for social items */
+.social-item:nth-child(2) { animation-delay: 0.2s; } /* Corresponds to first icon after text */
+.social-item:nth-child(3) { animation-delay: 0.4s; }
+.social-item:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes socialItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.social-item:hover::before {
+    transform: translateX(0);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    color: #8a9bae;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: scale(1.2);
+    animation: socialPulse 1s infinite;
+}
+
+@keyframes socialPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Media Queries for Responsive Footer */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .social-text {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .social-item {
+        padding: 8px 10px;
+    }
+
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .social-text {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .social-item {
+        padding: 8px;
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 992px) {
+    .intro {
+        max-width: 100%;
+    }
+
+    .profile-image {
+        max-width: 50%;
+        margin-left: 0;
+    }
+
+    .greeting {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+
+    .download-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+        position: relative;
+        right: 0;
+    }
+
+    .main-content {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+
+    .profile-image {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto 30px;
+        order: -1; /* Move profile image to top on mobile */
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .intro {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .greeting {
+        font-size: 32px;
+    }
+
+    .role {
+        font-size: 20px;
+        justify-content: center;
+    }
+
+    .role::before {
+        content: '>';
+        margin-right: 10px;
+    }
+
+    .url-section {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        padding: 8px;
+    }
+
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+
+    .download-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+
+    .download-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .greeting {
+        font-size: 28px;
+    }
+
+    .profile-image {
+        max-width: 250px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .social-text { /* This rule was repeated, consolidated */
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+        /* border-right: none; was already part of .footer-container flex-direction:column */
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); was already part of .footer-container flex-direction:column */
+        /* padding-bottom: 10px; was already part of .footer-container flex-direction:column */
+    }
+}
+/* Redundant social-icon and socialPulse keyframes removed as they are already defined above */

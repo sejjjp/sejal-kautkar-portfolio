@@ -1,0 +1,647 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85);
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: flex-end; /* Align nav items to the right within the flex container */
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    animation: navItemFade 0.5s ease forwards; /* Apply fade in to all nav items */
+    opacity: 0; /* Start transparent for animation */
+}
+
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    overflow: hidden;
+}
+
+/* Staggered nav items animation */
+@keyframes navItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.4s; }
+.nav-item:nth-child(3) { animation-delay: 0.6s; }
+.nav-item:nth-child(4) { animation-delay: 0.8s; }
+.nav-item:nth-child(5) { animation-delay: 1s; }
+.nav-item:nth-child(6) { animation-delay: 1.2s; } /* Added for Resume link */
+
+
+/* Download CV button animation - Note: No download button in this HTML, but keeping styles if used elsewhere */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px; /* Adjusted from margin-right */
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+    opacity: 0; /* Start transparent for animation if added */
+    animation: navItemFade 0.5s ease forwards 1.4s, btnPulse 2s infinite 2.4s alternate; /* Example animation if button is added */
+}
+
+.download-btn.animated { /* This class was in the original CSS but not used on an element */
+    animation: btnPulse 2s infinite alternate;
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
+    }
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+/* About content specific styles */
+.about-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 30px 0; /* Adjusted padding */
+    flex-wrap: wrap;
+    gap: 30px; /* Added gap for spacing between text and image */
+}
+
+.about-title {
+    font-size: 48px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.5s;
+    width: 100%;
+    color: white; /* Ensure title color is white */
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.about-text {
+    flex: 1.5; /* Give more space to text */
+    min-width: 300px;
+    /* padding-right: 40px; Removed, using gap on parent instead */
+}
+
+.about-description {
+    color: #8a9bae;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.8s;
+    font-size: 16px; /* Slightly larger for readability */
+}
+
+.section-title {
+    color: #6c7ee1;
+    font-size: 24px;
+    margin: 30px 0 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 1s;
+}
+
+.section-title::before {
+    content: '>';
+    margin-right: 15px;
+    color: #ff7a00; /* Changed to accent color */
+}
+
+.education-item {
+    margin-bottom: 20px; /* Increased margin */
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 1.2s;
+    color: #c3cce3; /* Lighter color for text */
+}
+.education-item p {
+    color: #8a9bae;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* Increased gap */
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 1.4s;
+}
+
+.skill-tag {
+    background-color: rgba(108, 126, 225, 0.15); /* Slightly more prominent background */
+    padding: 10px 18px; /* Increased padding */
+    border-radius: 50px;
+    font-size: 14px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(108, 126, 225, 0.3); /* Border to match background */
+    color: white; /* Ensure text is white */
+}
+
+.skill-tag:hover {
+    background-color: rgba(108, 126, 225, 0.3);
+    transform: translateY(-3px) scale(1.03); /* Added scale */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.software-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjusted gap */
+    margin-top: 20px;
+    margin-bottom: 30px; /* Added margin bottom */
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 1.6s;
+}
+
+.software-item {
+    width: 60px; /* Keep original size */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05); /* More subtle background */
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.software-item:hover {
+    transform: translateY(-5px) scale(1.05); /* Added scale */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.software-icon {
+    width: 35px; /* Slightly smaller icon for padding */
+    height: 35px;
+    border-radius: 8px; /* Adjusted for a softer look */
+    object-fit: contain;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 280px; /* Adjusted min-width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: imageFadeIn 0.8s ease-out forwards 1s; /* Synced animation */
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95); /* Added scale to animation */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.about-image img {
+    max-width: 100%;
+    max-height: 450px; /* Limit image height */
+    width: auto;
+    border-radius: 20px; /* Softer radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+    object-fit: cover; /* Ensure image covers area well */
+}
+
+.about-image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Styles */
+.footer {
+    padding: 20px 0;
+    margin-top: auto; /* Push footer to bottom */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: footerSlideUp 0.8s ease-out forwards 1.8s; /* Delayed footer animation */
+}
+
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: socialItemFade 0.5s ease forwards;
+}
+
+.social-item:nth-child(2) { animation-delay: 0.2s; } /* Corresponds to first icon after text */
+.social-item:nth-child(3) { animation-delay: 0.4s; }
+.social-item:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes socialItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.social-item:hover::before {
+    transform: translateX(0);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    color: #8a9bae;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: scale(1.2);
+    animation: socialPulse 1s infinite; /* Added existing pulse from other files */
+}
+
+@keyframes socialPulse { /* Added existing pulse from other files */
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 992px) {
+    .about-text {
+        max-width: 100%;
+        padding-right: 0;
+        flex-basis: 100%; /* Text takes full width before image */
+        margin-bottom: 30px; /* Space before image on tablet */
+    }
+    
+    .about-title {
+        font-size: 40px;
+    }
+    
+    .about-image {
+        margin-top: 0; /* Reset margin as it's controlled by flex gap or about-text margin */
+        flex-basis: 100%; /* Image takes full width after text */
+        order: 1; /* Ensure image comes after text if flex-direction isn't column */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+    .logo {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+    
+    .download-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+        margin-left: 5px; /* Reduce margin */
+    }
+    
+    .about-content {
+        flex-direction: column;
+        padding: 20px 0; /* Reduced padding */
+    }
+    
+    .about-image {
+        width: 100%;
+        max-width: 350px; /* Limit image size on mobile */
+        margin: 0 auto 30px;
+        order: -1; /* Image on top on mobile */
+    }
+    
+    .about-title {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        justify-content: center; /* Center title on mobile */
+    }
+    .section-title::before{
+        display: none; /* Optionally hide bracket on mobile for cleaner look */
+    }
+
+    .footer-container { /* Copied from your original media query for footer */
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .social-text { /* Copied from your original media query for footer */
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .social-item { /* Copied from your original media query for footer */
+        padding: 8px 10px;
+    }
+    
+    .social-icon { /* Copied from your original media query for footer */
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 8px;
+    }
+    .logo{
+        display: none; /* Optionally hide logo on very small screens if nav takes up space */
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .download-btn { /* If a download button is present */
+        display: none; /* Optionally hide on very small screens */
+    }
+        
+    .about-title {
+        font-size: 28px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 20px; /* Ensure consistency */
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-text {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .social-item {
+        padding: 8px;
+    }
+    /* The .social-icon and @keyframes socialPulse for 480px were inside another media query block. Consolidating. */
+    /* These specific rules were from a nested block and are likely fine here or using the general .social-icon rules. */
+}
+/* Redundant social-icon and socialPulse keyframes at the end removed as they are defined above */

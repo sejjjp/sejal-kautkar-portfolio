@@ -1,0 +1,609 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.85);
+    z-index: -1;
+}
+
+/* Main container with fade-in animation */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    margin-bottom: 30px;
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.nav-item {
+    padding: 15px 30px;
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.nav-item:hover {
+    color: white;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    color: white;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    overflow: hidden;
+}
+
+/* Setting delay for each nav item */
+.nav-item:nth-child(1) { animation-delay: 0.2s; }
+.nav-item:nth-child(2) { animation-delay: 0.4s; }
+.nav-item:nth-child(3) { animation-delay: 0.6s; }
+.nav-item:nth-child(4) { animation-delay: 0.8s; }
+.nav-item:nth-child(5) { animation-delay: 1s; }
+
+/* Download CV button animation */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2s infinite alternate;
+    animation-delay: 1.2s;
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards 1.2s, btnPulse 2s infinite 2s;
+    font-family: 'Fira Code', monospace;
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
+    }
+}
+
+@keyframes navItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.download-btn:hover {
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+    transform: scale(1.05);
+}
+
+.download-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .download-icon {
+    transform: translateY(5px);
+}
+
+/* CV content */
+.cv-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    animation: contentFadeIn 0.8s ease-out forwards 0.8s;
+    opacity: 0;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cv-sidebar {
+    flex: 1;
+    min-width: 300px;
+}
+
+.cv-main {
+    flex: 2;
+    min-width: 500px;
+}
+
+.profile-image {
+    width: 250px;
+    height: 350px; /* Adjusted as per the last rule in original CSS */
+    border-radius: 10%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 3px solid #ff7a00;
+    animation: imageFadeIn 0.8s ease-out forwards 1.2s;
+    opacity: 0;
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover
+}
+
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(10, 22, 34, 0.5);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.section-title {
+    color: #6c7ee1;
+    font-size: 24px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #ff7a00;
+}
+
+.skill-list, .language-list {
+    list-style: none;
+}
+
+.skill-item, .language-item {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.skill-item::before, .language-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ff7a00;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+}
+
+.experience-title {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.experience-company {
+    color: #ff7a00;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.experience-date {
+    color: #8a9bae;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.experience-description {
+    color: #8a9bae;
+    line-height: 1.5;
+}
+
+.education-item {
+    margin-bottom: 20px;
+}
+
+.education-degree {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.education-institution {
+    color: #ff7a00;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.education-date {
+    color: #8a9bae;
+    font-size: 14px;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #8a9bae;
+}
+
+.contact-icon {
+    margin-right: 10px;
+    color: #ff7a00;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background-color: rgba(108, 126, 225, 0.2);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    border: 1px solid rgba(108, 126, 225, 0.3);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #ff7a00;
+    border-radius: 4px;
+}
+
+/* Footer */
+.footer {
+    padding: 20px 0;
+    margin-top: auto;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1.4s;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: footerSlideUp 0.8s ease-out forwards;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-text {
+    color: #8a9bae;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-family: 'Fira Code', monospace;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: socialItemFade 0.5s ease forwards;
+}
+
+.social-item:nth-child(2) { animation-delay: 0.2s; }
+.social-item:nth-child(3) { animation-delay: 0.4s; }
+.social-item:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes socialItemFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff7a00;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.social-item:hover::before {
+    transform: translateX(0);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    color: #8a9bae;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.social-item:hover .social-icon {
+    color: white;
+    transform: scale(1.2);
+    animation: socialPulse 1s infinite;
+}
+
+@keyframes socialPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Media Queries */
+@media screen and (max-width: 992px) {
+    .cv-content {
+        flex-direction: column;
+    }
+    
+    .cv-sidebar, .cv-main {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+    
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+    
+    .download-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+        position: relative;
+        right: 0;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-text {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 8px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .download-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .profile-image {
+        width: 200px;
+        height: 300px; /* This rule was present in the media query */
+    }
+    
+    .section {
+        padding: 15px;
+    }
+}
+.logo {
+    padding: 15px 30px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+/* The following .social-icon, .profile-image, and @keyframes socialPulse rules were repeated at the end of the original <style> tag. 
+   They are already defined above, so I've kept the first definitions for clarity and to avoid redundancy.
+   If the intent was to override, the placement in CSS matters. Here, I've consolidated them.
+   The final .profile-image rule specifically changed height, so that is applied to the main .profile-image rule.
+*/
