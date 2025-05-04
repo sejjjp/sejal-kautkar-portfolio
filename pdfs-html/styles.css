@@ -1,0 +1,233 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+}
+
+html, body {
+    height: 100%; 
+}
+
+body {
+    background-color: #0a1622;
+    color: white;
+    background-image: url('https://media-hosting.imagekit.io//4ea7f1c262dd4a7a/Screenshot%202025-03-03%20at%2010.40.28%E2%80%AFPM.png?Expires=1835629832&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EDUVTIWTmAy3RNKcpffQnUUpgiZLUy-FIdnL1U9m-ughpQLnPhZ2AlZYBbkHlD6zYPTKp8bbUCBU6TV16GmWjbfvLiMuZRcJRX3dtyDb5UiTJL9AYw7WO59ORS1F98iHvWgA~KI-9BG3dVWCQx4iHUlceHCAnvg~mcjSi77P-8FjDA5BbpNM4-9tyfeSiqMHPksGfh7vPAjkSOXNVGj9BXXDigfaP2XTwssvUtbvtm-pZcds4Jer-v74EyL4vez8wcq7MpiMva2Y-CSUI4LnHl8uGWxvlWL7hlAiKfZQMNQqRBxs7lWccOXVjTZt2Gqt2LebDbLwkKvi-2edF1UEAw__');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+}
+
+.container {
+    max-width: 1782px; 
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px; /* Internal padding */
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 22, 34, 0.5);
+    
+    width: 100%; 
+    max-width: 1200px; /* MODIFIED: Constrained width */
+    margin-left: auto;   /* MODIFIED: Center header */
+    margin-right: auto;  /* MODIFIED: Center header */
+    margin-top: 20px;    /* MODIFIED: Space above header */
+    margin-bottom: 30px; /* MODIFIED: Space below header */
+    
+    flex-shrink: 0; 
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end; /* Align nav items to the right within header */
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.nav-item {
+    padding: 15px 30px; /* Adjust if too much for new header width */
+    text-decoration: none;
+    color: #8a9bae;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.nav-item:hover { color: white; }
+.nav-item::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px; background-color: #ff7a00;
+    transform: translateX(-100%); transition: transform 0.3s ease;
+}
+.nav-item:hover::before { transform: translateX(0); }
+.nav-item.active { color: white; position: relative; }
+.nav-item.active::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px; background-color: #ff7a00;
+    overflow: hidden;
+}
+
+.logo {
+    color: white; text-decoration: none; padding: 15px 0px 15px 15px; /* Adjusted padding for logo */
+    font-weight: 600; letter-spacing: 1px; font-size: 18px;
+    white-space: nowrap; /* Prevent logo text from wrapping */
+}
+
+.main-content {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+}
+
+.portfolio-title {
+    text-align: center;
+    font-size: 30px; 
+    margin-top: 0;  /* Title margin now controlled by header's margin-bottom */
+    margin-bottom: 15px; 
+    animation: fadeIn 0.8s ease-out forwards;
+    flex-shrink: 0; 
+    color: white; 
+}
+
+.portfolio-title span {
+    color: #6c7ee1;
+}
+
+.pdf-viewer-container {
+    flex-grow: 1; 
+    width: 100%;
+    max-width: 1200px; 
+    margin-left: auto;  
+    margin-right: auto; 
+    display: flex;      
+    min-height: 0;      
+    margin-bottom: 15px; 
+}
+
+.pdf-embed-frame {
+    width: 100%;
+    height: 100%; 
+    border: none;
+    background-color: #333; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+    padding: 15px 0; 
+    animation: fadeIn 0.8s ease-out forwards 0.5s; 
+    flex-shrink: 0; 
+     /* NEW: Center footer content similar to header */
+    width: 100%;
+    max-width: 1200px; /* Match header/pdf viewer width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-container {
+    display: flex; justify-content: center; align-items: center;
+    padding: 15px; border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); background-color: rgba(10, 22, 34, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure footer container uses the width of .footer */
+}
+
+.social-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.social-text {
+    color: #8a9bae; font-size: 14px; padding: 10px 20px;
+    font-family: 'Fira Code', monospace; border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.social-item {
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px 15px; transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+}
+.social-item::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px; background-color: #ff7a00;
+    transform: translateX(-100%); transition: transform 0.3s ease;
+}
+.social-item:hover::before { transform: translateX(0); }
+.social-icon {
+    width: 24px; height: 24px; color: #8a9bae; cursor: pointer;
+    transition: all 0.3s ease; transform: scale(1);
+}
+.social-item:hover .social-icon {
+    color: white; transform: scale(1.2); animation: socialPulse 1s infinite;
+}
+@keyframes socialPulse {
+    0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media screen and (max-width: 1200px) { /* Adjust breakpoint if header/pdf max-width changes */
+    .header, .pdf-viewer-container, .footer {
+        /* On screens narrower than 1200px, let them take available width within .container's padding */
+        max-width: none; 
+        /* margin-left/right auto will still work with .container's padding */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: center; flex-wrap: nowrap; overflow-x: auto;
+        padding: 10px; border-radius: 20px; margin-top: 15px; margin-bottom: 20px;
+    }
+    .logo { font-size: 16px; padding: 10px 15px; margin-right: auto; /* Push nav to right */ }
+    .nav {
+        justify-content: flex-start; overflow-x: auto;
+        -webkit-overflow-scrolling: touch; padding-bottom: 5px; flex-wrap: nowrap;
+    }
+    .nav-item { padding: 12px 15px; font-size: 12px; }
+    .portfolio-title { font-size: 24px; }
+    .pdf-viewer-container { margin-bottom: 15px; } 
+    .footer { padding: 10px 0; }
+    .footer-container { border-radius: 20px; padding: 10px; }
+    .social-text { padding: 8px 12px; font-size: 12px; }
+    .social-item { padding: 8px 10px; }
+    .social-icon { width: 20px; height: 20px; }
+}
+
+@media screen and (max-width: 480px) {
+    .container { padding: 0 10px; } 
+    .header { padding: 8px; margin-top: 10px; margin-bottom: 15px; }
+    .logo { display: none; } /* Hide logo for more nav space */
+    .nav-item { padding: 8px 10px; font-size: 10px; }
+    .portfolio-title { font-size: 20px; margin: 15px 0; }
+    .pdf-viewer-container { margin-bottom: 10px; } 
+    .footer { padding: 10px 0; }
+    .footer-container { flex-direction: column; padding: 15px; }
+    .social-links { flex-direction: column; gap: 10px; }
+    .social-text {
+        border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px; margin-bottom: 10px; text-align: center; width: 100%;
+    }
+    .social-item { padding: 8px; }
+}

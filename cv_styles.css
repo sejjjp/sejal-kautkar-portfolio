@@ -65,7 +65,7 @@ body::before {
     flex-wrap: wrap;
     backdrop-filter: blur(10px);
     background-color: rgba(10, 22, 34, 0.5);
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .nav {
@@ -73,6 +73,7 @@ body::before {
     flex-grow: 1;
     flex-wrap: wrap;
     gap: 0;
+    justify-content: flex-end; /* Align nav items to the right within the flex container */
 }
 
 .nav-item {
@@ -87,6 +88,8 @@ body::before {
     position: relative;
     overflow: hidden;
     margin: 0;
+    animation: navItemFade 0.5s ease forwards; /* Apply fade in to all nav items */
+    opacity: 0; /* Start transparent for animation */
 }
 
 .nav-item:hover {
@@ -574,6 +577,7 @@ body::before {
     
     .header {
         padding: 8px;
+        margin-bottom: 20px; /* Reduced margin */
     }
     
     .nav-item {
