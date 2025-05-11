@@ -394,6 +394,82 @@ body::before {
     animation: fadeIn 0.8s ease-out forwards 1.4s;
 }
 
+/* New styles for the CV Image container */
+.cv-image-container {
+    position: relative;
+    flex-grow: 1; /* Allows the main content to take up available space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between download button and image */
+    padding: 20px;
+    background-color: rgba(10, 22, 34, 0.5);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    animation: contentFadeIn 0.8s ease-out forwards 0.8s; /* Re-use existing content fade-in */
+    opacity: 0;
+    min-height: 700px; /* Adjust as needed based on image height */
+    margin-bottom: 30px; /* Space before footer */
+    align-items: center; /* Center the image horizontally if it's narrower than the container */
+    justify-content: flex-start; /* Align items to the top */
+    overflow-y: auto; /* Enable vertical scrolling if the image is too tall */
+    position: relative; 
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cv-image {
+    max-width: 100%; /* Ensure image scales down to fit container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    /* margin-top: 10px; Space from the download button */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Optional: add a subtle shadow to the image */
+    border-radius: 8px; /* Optional: slight rounded corners */
+}
+
+/* NEW: Styles for the subtle download icon button */
+.download-icon-btn {
+    position: absolute;
+    top: 20px; /* Distance from the top edge of the container */
+    right: 20px; /* Distance from the right edge of the container */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%; /* Circular button */
+    width: 40px; /* Small size */
+    height: 40px; /* Small size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Remove underline */
+    transition: all 0.3s ease;
+    z-index: 10; /* Ensure it's above the image */
+    color: #8a9bae; /* Default icon color */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-icon-btn:hover {
+    background-color: #ff7a00; /* Highlight on hover */
+    border-color: #ff7a00;
+    transform: translateY(-2px) scale(1.05);
+    color: white; /* Icon color on hover */
+}
+
+.download-icon-btn .download-icon {
+    width: 20px; /* Size the SVG icon within the button */
+    height: 20px;
+    fill: currentColor; /* Inherit color from parent (.download-icon-btn) */
+    transform: translateX(-4px) translateY(-0.5px); 
+}
+
 .footer-container {
     display: flex;
     justify-content: center;
@@ -507,13 +583,12 @@ body::before {
 
 /* Media Queries */
 @media screen and (max-width: 992px) {
-    .cv-content {
-        flex-direction: column;
+    .cv-image-container {
+        padding: 15px;
     }
-    
-    .cv-sidebar, .cv-main {
-        width: 100%;
-        min-width: unset;
+    .download-icon-btn {
+        top: 15px; /* Adjust for smaller padding */
+        right: 15px;
     }
 }
 
@@ -539,11 +614,15 @@ body::before {
         font-size: 12px;
     }
     
-    .download-btn {
-        font-size: 12px;
-        padding: 10px 15px;
-        position: relative;
-        right: 0;
+    .download-icon-btn {
+        top: 10px; /* Further adjust for smaller screens */
+        right: 10px;
+        width: 35px; /* Slightly smaller button */
+        height: 35px;
+    }
+    .download-icon-btn .download-icon {
+        width: 18px; /* Slightly smaller icon */
+        height: 18px;
     }
     
     .section-title {
@@ -585,9 +664,15 @@ body::before {
         font-size: 11px;
     }
     
-    .download-btn {
-        padding: 8px 12px;
-        font-size: 11px;
+    .download-icon-btn {
+        top: 8px;
+        right: 8px;
+        width: 30px; /* Even smaller button */
+        height: 30px;
+    }
+    .download-icon-btn .download-icon {
+        width: 16px; /* Even smaller icon */
+        height: 16px;
     }
     
     .profile-image {
