@@ -39,15 +39,11 @@ body::before {
     position: relative;
     z-index: 1;
     opacity: 0;
-    animation: fadeIn 1.5s ease-out forwards;
+    animation: fadeIn 1s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
@@ -58,26 +54,34 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
     flex-wrap: wrap;
     backdrop-filter: blur(10px);
     background-color: rgba(10, 22, 34, 0.5);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    padding: 15px 25px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .nav {
     display: flex;
     flex-grow: 1;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-wrap: nowrap;
     gap: 0;
-    justify-content: flex-end; /* Align nav items to the right within the flex container */
 }
 
 .nav-item {
-    padding: 15px 30px;
+    padding: 15px 25px;
     text-decoration: none;
     color: #8a9bae;
     text-transform: uppercase;
@@ -88,13 +92,11 @@ body::before {
     position: relative;
     overflow: hidden;
     margin: 0;
-    animation: navItemFade 0.5s ease forwards; /* Apply fade in to all nav items */
-    opacity: 0; /* Start transparent for animation */
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards;
 }
 
-.nav-item:hover {
-    color: white;
-}
+.nav-item:hover { color: white; }
 
 .nav-item::before {
     content: '';
@@ -108,15 +110,8 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-.nav-item:hover::before {
-    transform: translateX(0);
-}
-
-.nav-item.active {
-    color: white;
-    position: relative;
-}
-
+.nav-item:hover::before { transform: translateX(0); }
+.nav-item.active { color: white; }
 .nav-item.active::after {
     content: '';
     position: absolute;
@@ -125,47 +120,14 @@ body::before {
     width: 100%;
     height: 3px;
     background-color: #ff7a00;
-    overflow: hidden;
 }
 
-/* Setting delay for each nav item */
+/* Nav item animation delays */
 .nav-item:nth-child(1) { animation-delay: 0.2s; }
 .nav-item:nth-child(2) { animation-delay: 0.4s; }
 .nav-item:nth-child(3) { animation-delay: 0.6s; }
 .nav-item:nth-child(4) { animation-delay: 0.8s; }
-.nav-item:nth-child(5) { animation-delay: 1s; }
-
-/* Download CV button animation */
-.download-btn {
-    display: flex;
-    align-items: center;
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    padding: 15px 25px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-right: 10px;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    animation: btnPulse 2s infinite alternate;
-    animation-delay: 1.2s;
-    opacity: 0;
-    animation: navItemFade 0.5s ease forwards 1.2s, btnPulse 2s infinite 2s;
-    font-family: 'Fira Code', monospace;
-}
-
-@keyframes btnPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
-    }
-    100% {
-        box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4);
-    }
-}
+.nav-item:nth-child(5) { animation-delay: 1.0s; }
 
 @keyframes navItemFade {
     from {
@@ -176,6 +138,28 @@ body::before {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Download CV button */
+.download-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+    opacity: 0;
+    animation: navItemFade 0.5s ease forwards 1.2s, btnPulse 2s infinite 2s;
 }
 
 .download-btn:hover {
@@ -190,54 +174,61 @@ body::before {
 }
 
 .download-btn:hover .download-icon {
-    transform: translateY(5px);
+    transform: translateY(3px);
 }
 
-/* CV content */
+@keyframes btnPulse {
+    from { box-shadow: 0 0 0 0 rgba(255, 122, 0, 0); }
+    to { box-shadow: 0 0 10px 3px rgba(255, 122, 0, 0.4); }
+}
+
+/* --- NEW Resume Header --- */
+.resume-header {
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.5s;
+}
+.resume-header h1 {
+    font-size: 42px;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+.resume-header .role {
+    font-size: 20px;
+    color: #ff7a00;
+    display: inline-block; /* For cursor */
+    position: relative; /* For cursor */
+}
+
+/* Blinking cursor effect for typing animation */
+.role::after {
+    content: '|';
+    position: absolute;
+    right: -10px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+/* CV content layout */
 .cv-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
     gap: 30px;
-    animation: contentFadeIn 0.8s ease-out forwards 0.8s;
+    flex-grow: 1; /* Allows this to take up space, pushing footer down */
     opacity: 0;
+    animation: contentFadeIn 0.8s ease-out forwards 0.8s;
 }
 
 @keyframes contentFadeIn {
     from {
         opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.cv-sidebar {
-    flex: 1;
-    min-width: 300px;
-}
-
-.cv-main {
-    flex: 2;
-    min-width: 500px;
-}
-
-.profile-image {
-    width: 250px;
-    height: 350px; /* Adjusted as per the last rule in original CSS */
-    border-radius: 10%;
-    overflow: hidden;
-    margin: 0 auto 20px;
-    border: 3px solid #ff7a00;
-    animation: imageFadeIn 0.8s ease-out forwards 1.2s;
-    opacity: 0;
-}
-
-@keyframes imageFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -245,25 +236,35 @@ body::before {
     }
 }
 
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit:cover
+.cv-main {
+    flex: 2; /* Takes 2/3 of the space */
+    min-width: 300px;
+}
+
+.cv-sidebar {
+    flex: 1; /* Takes 1/3 of the space */
+    min-width: 280px;
 }
 
 .section {
     margin-bottom: 30px;
-    padding: 20px;
-    background-color: rgba(10, 22, 34, 0.5);
+    padding: 25px;
+    background-color: #2c2c3e; /* CHANGED from rgba(10, 22, 34, 0.6) */
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .section-title {
     color: #6c7ee1;
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
     padding-left: 20px;
 }
@@ -275,172 +276,131 @@ body::before {
     color: #ff7a00;
 }
 
-.skill-list, .language-list {
-    list-style: none;
+/* NEW: Wrapper for project title and link */
+.project-title-wrapper {
+    display: flex;
+    align-items: center; /* Align title and link vertically */
+    gap: 10px; /* Space between title and link */
+    margin-bottom: 5px; /* Adjust spacing as needed, replaces original h3 margin-bottom */
 }
 
-.skill-item, .language-item {
-    margin-bottom: 12px;
-    padding-left: 20px;
+.project-link {
+    display: flex; /* To align the SVG icon */
+    align-items: center;
+    color: #afbdd9; /* Initial color for the icon */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #ff7a00; /* Color change on hover */
+}
+
+.project-link svg {
+    /* Style the SVG icon */
+    width: 18px; /* Adjust size as needed */
+    height: 18px;
     position: relative;
+    bottom: 3px;
 }
 
-.skill-item::before, .language-item::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: #ff7a00;
-}
-
-.experience-item {
-    margin-bottom: 20px;
-}
-
+/* Adjust existing margin for experience-title if necessary (optional, as it's now in .project-title-wrapper) */
 .experience-title {
+    /* Ensure no conflicting margin-bottom if it was set directly on h3 */
+    margin-bottom: 0; /* Important: remove if it had a value conflicting with .project-title-wrapper */
+}
+
+.experience-item, .education-item {
+    margin-bottom: 30px;
+}
+
+.experience-item:last-child, .education-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-title, .education-degree {
     font-size: 18px;
     color: white;
     margin-bottom: 5px;
 }
 
-.experience-company {
+.experience-company, .education-institution {
     color: #ff7a00;
     font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.experience-date {
-    color: #8a9bae;
-    font-size: 14px;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .experience-description {
-    color: #8a9bae;
-    line-height: 1.5;
+    color: #afbdd9;
+    line-height: 1.6;
+    font-size: 15px;
 }
-
-.education-item {
-    margin-bottom: 20px;
-}
-
-.education-degree {
-    font-size: 18px;
-    color: white;
+.experience-description li {
+    margin-left: 20px;
     margin-bottom: 5px;
-}
-
-.education-institution {
-    color: #ff7a00;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.education-date {
-    color: #8a9bae;
-    font-size: 14px;
-}
-
-.contact-info {
-    margin-bottom: 20px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    color: #8a9bae;
-}
-
-.contact-icon {
-    margin-right: 10px;
-    color: #ff7a00;
 }
 
 .skills-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .skill-tag {
     background-color: rgba(108, 126, 225, 0.2);
     color: white;
-    padding: 5px 15px;
+    padding: 6px 15px;
     border-radius: 50px;
     font-size: 14px;
     border: 1px solid rgba(108, 126, 225, 0.3);
+    transition: background-color 0.3s;
+}
+.skill-tag:hover {
+    background-color: rgba(108, 126, 225, 0.4);
 }
 
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    margin-top: 5px;
-    overflow: hidden;
+/* Sidebar Specifics */
+.contact-info a {
+    color: #afbdd9;
+    text-decoration: none;
+    transition: color 0.3s;
 }
-
-.progress {
-    height: 100%;
-    background-color: #ff7a00;
-    border-radius: 4px;
+.contact-info a:hover {
+    color: #ff7a00;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #afbdd9;
+    font-size: 15px;
+}
+.contact-icon {
+    margin-right: 15px;
+    color: #ff7a00;
+    font-style: normal;
+}
+.skill-category {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+.skill-category:first-of-type {
+    margin-top: 0;
+}
+.skill-list-p {
+    color: #afbdd9;
+    line-height: 1.6;
 }
 
 /* Footer */
 .footer {
     padding: 20px 0;
-    margin-top: auto;
+    margin-top: auto; /* Pushes footer to bottom */
     opacity: 0;
     animation: fadeIn 0.8s ease-out forwards 1.4s;
-}
-
-/* New styles for the CV Image container */
-.cv-pdf-container {
-    position: relative;
-    flex-grow: 1; /* Allows the main content to take up available space */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between download button and image */
-    padding: 20px;
-    background-color: rgba(10, 22, 34, 0.5);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    animation: contentFadeIn 0.8s ease-out forwards 0.8s; /* Re-use existing content fade-in */
-    opacity: 0;
-    min-height: 700px; /* Adjust as needed based on image height */
-    margin-bottom: 30px; /* Space before footer */
-    align-items: center; /* Center the image horizontally if it's narrower than the container */
-    justify-content: flex-start; /* Align items to the top */
-    overflow-y: auto; /* Enable vertical scrolling if the image is too tall */
-    position: relative; 
-}
-
-@keyframes contentFadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.cv-image {
-    max-width: 100%; /* Ensure image scales down to fit container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove extra space below image */
-    /* margin-top: 10px; Space from the download button */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Optional: add a subtle shadow to the image */
-    border-radius: 8px; /* Optional: slight rounded corners */
-}
-
-.embedded-resume {
-    width: 100%; /* Make the PDF take the full width of its container */
-    height: auto; /* Adjust height automatically based on aspect ratio */
-    min-height: 800px; /* Set a minimum height to ensure it's visible (adjust as needed) */
-    border: none; /* Remove any default border */
 }
 
 .footer-container {
@@ -452,21 +412,6 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     background-color: rgba(10, 22, 34, 0.5);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    animation: footerSlideUp 0.8s ease-out forwards;
-    transform: translateY(20px);
-    opacity: 0;
-}
-
-@keyframes footerSlideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .social-links {
@@ -485,46 +430,7 @@ body::before {
 }
 
 .social-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 10px 15px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    animation: socialItemFade 0.5s ease forwards;
-}
-
-.social-item:nth-child(2) { animation-delay: 0.2s; }
-.social-item:nth-child(3) { animation-delay: 0.4s; }
-.social-item:nth-child(4) { animation-delay: 0.6s; }
-
-@keyframes socialItemFade {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.social-item::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ff7a00;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
-
-.social-item:hover::before {
-    transform: translateX(0);
 }
 
 .social-icon {
@@ -533,147 +439,102 @@ body::before {
     color: #8a9bae;
     cursor: pointer;
     transition: all 0.3s ease;
-    transform: scale(1);
 }
 
 .social-item:hover .social-icon {
     color: white;
     transform: scale(1.2);
-    animation: socialPulse 1s infinite;
-}
-
-@keyframes socialPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 
 /* Media Queries */
 @media screen and (max-width: 992px) {
-    .cv-image-container {
-        padding: 15px;
+    .nav {
+        justify-content: center;
     }
-    .download-icon-btn {
-        top: 15px; /* Adjust for smaller padding */
-        right: 15px;
+    .header {
+        justify-content: space-around;
+        gap: 15px;
+    }
+    .download-btn {
+        margin-left: 0;
     }
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
     .header {
-        justify-content: center;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 10px;
+        flex-direction: column;
         border-radius: 20px;
+        padding: 20px;
     }
-    
     .nav {
-        justify-content: flex-start;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 5px;
-        flex-wrap: nowrap;
+        padding-bottom: 10px;
+        width: 100%;
+        justify-content: flex-start;
     }
-    
     .nav-item {
         padding: 12px 15px;
         font-size: 12px;
     }
-    
-    .download-icon-btn {
-        top: 10px; /* Further adjust for smaller screens */
-        right: 10px;
-        width: 35px; /* Slightly smaller button */
-        height: 35px;
-    }
-    .download-icon-btn .download-icon {
-        width: 18px; /* Slightly smaller icon */
-        height: 18px;
-    }
-    
-    .section-title {
-        font-size: 20px;
-    }
-    
-    .footer-container {
-        flex-direction: column;
-        padding: 15px;
-    }
-    
-    .social-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .social-text {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        text-align: center;
-        width: 100%;
-    }
+    .resume-header h1 { font-size: 32px; }
+    .resume-header .role { font-size: 18px; }
 
-    .embedded-resume {
-        min-height: 800px; /* Increase min-height for smaller screens if needed to avoid very short display */
+    .cv-content {
+        flex-direction: column; /* Stacks columns */
     }
 }
 
 @media screen and (max-width: 480px) {
-    .container {
-        padding: 15px;
-    }
-    
     .header {
-        padding: 8px;
-        margin-bottom: 20px; /* Reduced margin */
-    }
-    
-    .nav-item {
-        padding: 8px 12px;
-        font-size: 11px;
-    }
-    
-    .download-icon-btn {
-        top: 8px;
-        right: 8px;
-        width: 30px; /* Even smaller button */
-        height: 30px;
-    }
-    .download-icon-btn .download-icon {
-        width: 16px; /* Even smaller icon */
-        height: 16px;
-    }
-    
-    .profile-image {
-        width: 200px;
-        height: 300px; /* This rule was present in the media query */
-    }
-    
-    .section {
         padding: 15px;
     }
-
-    .embedded-resume {
-        min-height: 1000px; /* Further increase min-height for even smaller screens */
+    .logo {
+        margin-bottom: 15px;
+    }
+    .nav {
+        justify-content: center;
+    }
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .footer-container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    .social-text {
+        border-right: none;
+        padding: 0;
     }
 }
-.logo {
-    padding: 15px 30px;
-    color: white;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 1px;
+
+/* Add these NEW rules to your CSS file. You can place them after the .section rule. */
+
+/* Sets the main content background to white */
+.cv-main .section {
+    background-color: #2c2c3e;
 }
-/* The following .social-icon, .profile-image, and @keyframes socialPulse rules were repeated at the end of the original <style> tag. 
-   They are already defined above, so I've kept the first definitions for clarity and to avoid redundancy.
-   If the intent was to override, the placement in CSS matters. Here, I've consolidated them.
-   The final .profile-image rule specifically changed height, so that is applied to the main .profile-image rule.
-*/
+
+/* Changes the main content's text colors to dark for readability */
+.cv-main .section-title,
+.cv-main .experience-title {
+    color: #6c7ee1;
+}
+
+.cv-main .experience-description {
+    color: #afbdd9;
+}
+
+.cv-main .experience-title {
+    color: white;
+}
+
+/* Ensures the orange accent color for "Brief:" and "Learnings:" remains vibrant */
+.cv-main .experience-company {
+    color: #ff7a00;
+}

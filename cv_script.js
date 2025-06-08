@@ -1,98 +1,80 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Handle active navigation item
     const navItems = document.querySelectorAll('.nav-item');
-    
+    const currentPage = window.location.href;
+
     navItems.forEach(item => {
-        // Set active class based on current page URL
-        if (item.href === window.location.href) {
+        if (item.href === currentPage) {
             item.classList.add('active');
         }
-
-        item.addEventListener('click', function() {
-            // This click listener might be for SPAs or dynamic content loading.
-            // For simple multi-page navigation, the browser handles active state via href matching.
-            // If pages fully reload, this click-based active state might be reset unless managed with localStorage or similar.
-            // For now, keeping it as it might be intended for future enhancements.
-            navItems.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
-        });
     });
 
-    // Download CV button functionality (if it exists on the page)
+    // Download CV button functionality
     const downloadBtn = document.querySelector('.download-btn');
     if (downloadBtn) {
-        downloadBtn.addEventListener('click', function() {
-            // In a real implementation, this would trigger the download
-            // For example: window.location.href = 'path/to/your/cv.pdf';
-            alert('CV download would start here!'); // Placeholder
-            
+        downloadBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default action (which would open the PDF)
+
+            const fileUrl = 'pdfs/sejal-kautkar-resume.pdf';
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = 'sejal-kautkar-resume.pdf'; // Suggests a filename for download
+            document.body.appendChild(link); // Append to body to make it clickable
+            link.click(); // Programmatically click the link
+            document.body.removeChild(link); // Clean up the element
+
             // Add a temporary animation class for feedback
             this.classList.add('download-clicked');
             setTimeout(() => {
                 this.classList.remove('download-clicked');
-            }, 300);
+            }, 400);
         });
     }
-    
-    // Animate elements as they come into view (simple version)
+
+    // Animate elements as they come into view
     function animateOnScroll() {
-        const animElements = document.querySelectorAll('.profile-image, .intro'); // Add other classes if needed
-        
+        // Now targeting the new .section elements as well
+        const animElements = document.querySelectorAll('.section, .resume-header');
+
         animElements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3; // Adjust trigger point
-            
+            const screenPosition = window.innerHeight / 1.3;
+
             if (elementPosition < screenPosition) {
-                // Check if animation has already been applied to prevent re-triggering
-                if (element.style.opacity !== "1") { 
+                // Check if animation has already been applied
+                if (element.style.opacity !== "1") {
+                    // Re-using the contentFadeIn animation by applying a class or direct styles
                     element.style.opacity = "1";
-                    // Reset transform only if it was initially set for animation
-                    if (element.style.transform.includes("translateY")) {
-                         element.style.transform = "translateY(0)";
-                    }
+                    element.style.transform = "translateY(0)";
                 }
             }
         });
     }
-    
-    // Add scroll event for animation
+
+    // Add scroll event for animation and trigger on load
     window.addEventListener('scroll', animateOnScroll);
-    // Trigger on load as well in case elements are already in view
-    animateOnScroll(); 
-    
+    animateOnScroll(); // Trigger on load for elements already in view
+
     // Typing animation for role text
     const roleElement = document.querySelector('.role');
     if (roleElement) {
-        const originalText = roleElement.textContent.trim(); // Trim to handle potential whitespace
+        const originalText = roleElement.textContent.trim();
         roleElement.textContent = ''; // Clear original text
-        
+
         let i = 0;
         function typeWriter() {
             if (i < originalText.length) {
                 roleElement.textContent += originalText.charAt(i);
                 i++;
-                setTimeout(typeWriter, 100); // Adjust typing speed
+                setTimeout(typeWriter, 100); // Typing speed
             } else {
-                // Optional: Add blinking cursor or other effect after typing finishes
-                if (roleElement.classList.contains('role')) { // Ensure it has the class for the ::before pseudo-element
-                    // The CSS handles the blinking cursor with ::before
-                }
+                // Make cursor visible and blinking after typing finishes
+                // roleElement.style.borderRight = '2px solid #ff7a00';
+                // roleElement.classList.add('typing-done'); // You can use this class for the blinking cursor
             }
         }
-        
-        // Start typing animation after a delay
-        // Check if the role element itself needs the initial fade-in from CSS
-        // If its parent .intro handles fade-in, this timeout can be relative to that
-        const introElement = document.querySelector('.intro');
-        let startTypingDelay = 1500; // Default delay
 
-        if (introElement && introElement.style.animationName === 'contentFadeIn') {
-            // Try to sync with the end of the intro's fade-in animation
-            const animationDuration = parseFloat(getComputedStyle(introElement).animationDuration) * 1000;
-            const animationDelay = parseFloat(getComputedStyle(introElement).animationDelay) * 1000;
-            startTypingDelay = animationDuration + animationDelay;
-        }
-        
-        setTimeout(typeWriter, startTypingDelay);
+        // Start typing animation after a delay (e.g., after the header fades in)
+        setTimeout(typeWriter, 1200);
     }
 });
